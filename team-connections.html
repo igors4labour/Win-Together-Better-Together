@@ -3,232 +3,121 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Team Connections - Win Together Better Together</title>
+    <title>Team Connections</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body { 
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: #f5f7fa;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
             min-height: 100vh; 
-            padding: 40px 20px;
-            line-height: 1.6;
-            position: relative;
-            overflow-x: hidden;
+            padding: 24px;
+            color: white;
         }
         
-        /* Subtle animated background */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(circle at 20% 50%, rgba(0, 169, 165, 0.05) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(255, 107, 157, 0.05) 0%, transparent 50%),
-                radial-gradient(circle at 40% 20%, rgba(247, 148, 29, 0.03) 0%, transparent 50%);
-            animation: subtleFlow 20s ease-in-out infinite;
-            z-index: 0;
-            pointer-events: none;
+        .container { max-width: 1200px; margin: 0 auto; }
+        
+        .breadcrumb {
+            background: rgba(255,255,255,0.08);
+            backdrop-filter: blur(10px);
+            padding: 16px 24px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.95em;
+            flex-wrap: wrap;
         }
         
-        @keyframes subtleFlow {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            33% { transform: translate(20px, -20px) scale(1.1); }
-            66% { transform: translate(-20px, 20px) scale(1.05); }
+        .breadcrumb a {
+            color: #5eead4;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
         
-        .container { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
-        
-        .header-card {
-            background: white;
-            border-radius: 16px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.07), 0 10px 30px rgba(0,0,0,0.08);
-            overflow: hidden;
-            margin-bottom: 32px;
-            position: relative;
+        .breadcrumb a:hover {
+            color: #f472b6;
         }
         
-        .header-card::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, 
-                rgba(0, 169, 165, 0.05) 0%, 
-                rgba(13, 115, 119, 0.05) 25%,
-                rgba(255, 107, 157, 0.05) 50%,
-                rgba(247, 148, 29, 0.05) 75%,
-                rgba(0, 169, 165, 0.05) 100%);
-            background-size: 400% 400%;
-            animation: headerGradient 15s ease infinite;
-            opacity: 0.6;
+        .breadcrumb-separator {
+            color: rgba(255,255,255,0.4);
+            font-weight: 300;
         }
         
-        @keyframes headerGradient {
+        .breadcrumb-current {
+            color: rgba(255,255,255,0.8);
+            font-weight: 600;
+        }
+        
+        .header { text-align: center; margin-bottom: 32px; }
+        .header h1 { 
+            font-size: 2.5em; 
+            font-weight: 800; 
+            background: linear-gradient(135deg, #00a9a5, #e91388, #f7941d, #00a9a5); 
+            background-size: 300% 300%;
+            animation: gradientShift 5s ease infinite;
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 60px rgba(233, 19, 136, 0.3);
+        }
+        .header p { color: #94a3b8; font-size: 1em; margin-top: 8px; }
+        
+        @keyframes gradientShift {
             0%, 100% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
         }
         
-        .header { 
-            background: linear-gradient(135deg, #00a9a5 0%, #0d7377 50%, #ff6b9d 100%);
-            color: white;
-            padding: 50px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-            opacity: 0.4;
-        }
-        
-        .header::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(circle at 30% 50%, rgba(255, 107, 157, 0.3) 0%, transparent 50%),
-                radial-gradient(circle at 70% 50%, rgba(247, 148, 29, 0.2) 0%, transparent 50%);
-            animation: headerLava 10s ease-in-out infinite;
-        }
-        
-        @keyframes headerLava {
-            0%, 100% { transform: scale(1) translate(0, 0); }
-            50% { transform: scale(1.15) translate(30px, -15px); }
-        }
-        
-        .header-content {
-            position: relative;
-            z-index: 1;
-        }
-        
-        .header h1 { 
-            font-size: 2.5em; 
-            font-weight: 700;
-            margin-bottom: 8px;
-            animation: titleGlow 3s ease-in-out infinite;
-        }
-        
-        @keyframes titleGlow {
-            0%, 100% { text-shadow: 0 2px 20px rgba(255, 255, 255, 0.3); }
-            50% { text-shadow: 0 2px 30px rgba(255, 255, 255, 0.5); }
-        }
-        
-        .header p { 
-            font-size: 1.1em; 
-            opacity: 0.95;
-        }
-        
         .values-legend { 
-            display: flex; 
-            flex-wrap: wrap; 
-            justify-content: center; 
-            gap: 16px; 
-            margin-bottom: 24px; 
-            padding: 20px; 
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; 
+            margin-bottom: 24px; padding: 20px; 
+            background: rgba(255,255,255,0.05); 
+            backdrop-filter: blur(10px);
+            border-radius: 16px; 
+            border: 1px solid rgba(255,255,255,0.1);
         }
-        
         .value-item { 
-            display: flex; 
-            align-items: center; 
-            gap: 8px; 
-            font-size: 0.85em; 
-            font-weight: 600;
+            display: flex; align-items: center; gap: 8px; 
+            font-size: 0.85em; font-weight: 600;
             padding: 8px 16px;
-            background: #f9fafb;
+            background: rgba(255,255,255,0.05);
             border-radius: 20px;
-            border: 1px solid #e5e7eb;
             transition: all 0.3s;
-            color: #374151;
         }
-        
         .value-item:hover {
-            background: white;
+            background: rgba(255,255,255,0.1);
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
         }
-        
         .value-dot { 
-            width: 10px; 
-            height: 10px; 
-            border-radius: 50%; 
-            animation: dotPulse 2s ease-in-out infinite;
-        }
-        
-        @keyframes dotPulse {
-            0%, 100% { box-shadow: 0 0 8px currentColor; }
-            50% { box-shadow: 0 0 15px currentColor; }
+            width: 10px; height: 10px; border-radius: 50%; 
+            box-shadow: 0 0 10px currentColor;
         }
         
         .card { 
-            background: white;
-            border-radius: 16px;
-            padding: 40px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.07), 0 10px 30px rgba(0,0,0,0.08);
-            position: relative;
-            overflow: hidden;
+            background: rgba(255,255,255,0.03); 
+            backdrop-filter: blur(20px);
+            border-radius: 24px; 
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 32px;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
         }
         
-        .card::before {
-            content: '';
-            position: absolute;
-            inset: -50%;
-            background: 
-                radial-gradient(circle at 25% 35%, rgba(0, 169, 165, 0.03) 0%, transparent 40%),
-                radial-gradient(circle at 75% 65%, rgba(255, 107, 157, 0.03) 0%, transparent 40%);
-            animation: cardFlow 12s ease-in-out infinite;
-            z-index: 0;
-        }
+        .svg-container { max-width: 520px; margin: 0 auto; }
+        svg { width: 100%; height: auto; overflow: visible; filter: drop-shadow(0 0 20px rgba(233, 19, 136, 0.2)); }
         
-        @keyframes cardFlow {
-            0%, 100% { transform: translate(0, 0) rotate(0deg); }
-            50% { transform: translate(30px, -30px) rotate(180deg); }
-        }
-        
-        .svg-container { 
-            max-width: 520px; 
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-        }
-        
-        svg { 
-            width: 100%; 
-            height: auto; 
-            overflow: visible;
-        }
-        
-        .dept-circle { 
-            cursor: pointer; 
-            transition: all 0.3s ease;
-        }
-        
-        .dept-circle:hover { 
-            transform: scale(1.15);
-            filter: drop-shadow(0 0 15px currentColor);
-        }
+        .dept-circle { cursor: pointer; transition: all 0.3s ease; }
+        .dept-circle:hover { transform: scale(1.15); filter: drop-shadow(0 0 15px currentColor); }
         
         .connection-line { 
             stroke-width: 3; 
             visibility: hidden;
-            transition: all 0.3s ease;
+            filter: drop-shadow(0 0 6px currentColor);
         }
-        
         .connection-line.active { 
             visibility: visible;
             animation: linePulse 2s ease-in-out infinite;
@@ -239,13 +128,12 @@
             50% { stroke-opacity: 0.6; stroke-width: 4; }
         }
         
-        .connections-panel { 
-            margin-top: 32px; 
-            display: none;
-            position: relative;
-            z-index: 1;
+        @keyframes nodeFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
         }
         
+        .connections-panel { margin-top: 32px; display: none; }
         .connections-panel.active { 
             display: block; 
             animation: fadeInUp 0.5s ease;
@@ -257,15 +145,12 @@
         }
         
         .connections-title { 
-            font-weight: 700; 
-            font-size: 1.4em; 
-            text-align: center; 
-            margin-bottom: 24px;
-            color: #1f2937;
+            font-weight: 700; font-size: 1.4em; 
+            text-align: center; margin-bottom: 24px;
+            color: white;
         }
-        
         .connections-title span { 
-            background: linear-gradient(135deg, var(--dept-color), #ff6b9d);
+            background: linear-gradient(135deg, var(--dept-color), #e91388);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -277,163 +162,111 @@
         }
         
         .connection-box { 
-            background: #f9fafb;
-            border-radius: 12px;
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px; 
             padding: 24px; 
-            border: 1px solid #e5e7eb;
+            border: 1px solid rgba(255,255,255,0.1);
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
             overflow: hidden;
         }
-        
         .connection-box::before {
             content: '';
             position: absolute;
-            top: 0; 
-            left: 0;
-            width: 5px; 
-            height: 100%;
+            top: 0; left: 0;
+            width: 5px; height: 100%;
             background: var(--box-color);
-            animation: colorPulse 2s ease-in-out infinite;
+            box-shadow: 0 0 20px var(--box-color);
         }
-        
-        @keyframes colorPulse {
-            0%, 100% { opacity: 1; box-shadow: 0 0 15px var(--box-color); }
-            50% { opacity: 0.7; box-shadow: 0 0 25px var(--box-color); }
-        }
-        
         .connection-box:hover { 
             transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 15px 35px rgba(0, 169, 165, 0.15);
-            border-color: #00a9a5;
-            background: white;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            border-color: rgba(255,255,255,0.2);
         }
         
         .connection-header { 
-            display: flex; 
-            align-items: center; 
-            gap: 14px; 
-            margin-bottom: 18px; 
-            padding-bottom: 14px; 
-            border-bottom: 1px solid #e5e7eb;
+            display: flex; align-items: center; gap: 14px; 
+            margin-bottom: 18px; padding-bottom: 14px; 
+            border-bottom: 1px solid rgba(255,255,255,0.1);
         }
-        
         .dept-badge { 
-            width: 52px; 
-            height: 52px; 
+            width: 52px; height: 52px; 
             border-radius: 14px; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            color: white; 
-            font-weight: 700; 
-            font-size: 13px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            display: flex; align-items: center; justify-content: center; 
+            color: white; font-weight: 700; font-size: 13px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            position: relative;
         }
-        
-        .dept-name { 
-            font-weight: 700; 
-            font-size: 1.15em;
-            color: #1f2937;
+        .dept-badge::after {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, transparent, rgba(255,255,255,0.3));
+            z-index: -1;
         }
+        .dept-name { font-weight: 700; font-size: 1.15em; }
         
-        .connection-items { 
-            display: flex; 
-            flex-direction: column; 
-            gap: 12px; 
-        }
-        
+        .connection-items { display: flex; flex-direction: column; gap: 12px; }
         .connection-item { 
-            display: flex; 
-            align-items: flex-start; 
-            gap: 12px; 
-            font-size: 0.9em; 
-            padding: 14px; 
-            border-radius: 8px; 
-            background: white;
+            display: flex; align-items: flex-start; gap: 12px; 
+            font-size: 0.9em; padding: 14px; 
+            border-radius: 12px; 
+            background: rgba(255,255,255,0.03);
             border-left: 3px solid;
             transition: all 0.3s;
-            border: 1px solid #e5e7eb;
         }
-        
         .connection-item:hover {
-            background: #f9fafb;
+            background: rgba(255,255,255,0.08);
             transform: translateX(5px);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
+        .arrow { font-weight: 700; font-size: 1.2em; }
+        .desc { color: #cbd5e1; line-height: 1.6; }
         
-        .arrow { 
-            font-weight: 700; 
-            font-size: 1.2em; 
+        /* Floating particles background */
+        .particles {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: -1;
         }
-        
-        .desc { 
-            color: #4b5563; 
-            line-height: 1.6; 
+        .particle {
+            position: absolute;
+            width: 4px; height: 4px;
+            background: rgba(233, 19, 136, 0.3);
+            border-radius: 50%;
+            animation: float 20s infinite;
         }
-        
-        .value-badge {
-            display: inline-block;
-            padding: 4px 10px;
-            border-radius: 12px;
-            font-size: 0.7em;
-            font-weight: 700;
-            margin-bottom: 8px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            color: white;
-        }
-        
-        @media (max-width: 768px) {
-            .header {
-                padding: 40px 30px;
-            }
-            .header h1 {
-                font-size: 2em;
-            }
-            .card {
-                padding: 30px 20px;
-            }
-            .connections-grid {
-                grid-template-columns: 1fr;
-            }
+        @keyframes float {
+            0%, 100% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; }
         }
     </style>
 </head>
 <body>
+    <div class="particles" id="particles"></div>
     <div class="container">
-        <div class="header-card">
-            <div class="header">
-                <div class="header-content">
-                    <h1>Team Connections</h1>
-                    <p>Click a team to explore how we collaborate across the organisation</p>
-                </div>
-            </div>
-        </div>
+        <nav class="breadcrumb">
+            <a href="index.html">🏠 Hub</a>
+            <span class="breadcrumb-separator">›</span>
+            <span class="breadcrumb-current">Win Together - Better Together</span>
+        </nav>
         
+        <div class="header">
+            <h1>Team Connections</h1>
+            <p>Click a team to explore how we collaborate across the organisation</p>
+        </div>
         <div class="values-legend">
-            <div class="value-item">
-                <div class="value-dot" style="background: #3b82f6; color: #3b82f6;"></div>
-                <span>Win Together</span>
-            </div>
-            <div class="value-item">
-                <div class="value-dot" style="background: #7c3aed; color: #7c3aed;"></div>
-                <span>Trust Starts With Us</span>
-            </div>
-            <div class="value-item">
-                <div class="value-dot" style="background: #e91388; color: #e91388;"></div>
-                <span>Empower Through Innovation</span>
-            </div>
-            <div class="value-item">
-                <div class="value-dot" style="background: #00a9a5; color: #00a9a5;"></div>
-                <span>Ignite Growth</span>
-            </div>
-            <div class="value-item">
-                <div class="value-dot" style="background: #f7941d; color: #f7941d;"></div>
-                <span>Always Go Beyond</span>
-            </div>
+            <div class="value-item"><div class="value-dot" style="background: #1e3a5f; color: #1e3a5f;"></div><span style="color: #60a5fa;">Win Together</span></div>
+            <div class="value-item"><div class="value-dot" style="background: #7c3aed; color: #7c3aed;"></div><span style="color: #a78bfa;">Trust Starts With Us</span></div>
+            <div class="value-item"><div class="value-dot" style="background: #e91388; color: #e91388;"></div><span style="color: #f472b6;">Empower Through Innovation</span></div>
+            <div class="value-item"><div class="value-dot" style="background: #00a9a5; color: #00a9a5;"></div><span style="color: #5eead4;">Ignite Growth</span></div>
+            <div class="value-item"><div class="value-dot" style="background: #f7941d; color: #f7941d;"></div><span style="color: #fbbf24;">Always Go Beyond</span></div>
         </div>
-        
         <div class="card">
             <div class="svg-container">
                 <svg viewBox="0 0 400 400" id="diagram">
@@ -457,19 +290,34 @@
         </div>
     </div>
 <script>
+// Create floating particles
+var particlesContainer = document.getElementById('particles');
+for (var i = 0; i < 30; i++) {
+    var particle = document.createElement('div');
+    particle.className = 'particle';
+    particle.style.left = Math.random() * 100 + '%';
+    particle.style.animationDelay = Math.random() * 20 + 's';
+    particle.style.animationDuration = (15 + Math.random() * 15) + 's';
+    var colors = ['rgba(233, 19, 136, 0.4)', 'rgba(0, 169, 165, 0.4)', 'rgba(247, 148, 29, 0.4)', 'rgba(124, 58, 237, 0.4)'];
+    particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+    particle.style.width = (2 + Math.random() * 4) + 'px';
+    particle.style.height = particle.style.width;
+    particlesContainer.appendChild(particle);
+}
+
 var departments = [
     { id: 'consulting', name: 'Consulting', short: 'CON', color: '#f7941d' },
     { id: 'customer-success', name: 'Customer Success', short: 'CS', color: '#00a9a5' },
-    { id: 'engineering', name: 'Engineering', short: 'ENG', color: '#3b82f6' },
+    { id: 'engineering', name: 'Engineering', short: 'ENG', color: '#1e3a5f' },
     { id: 'finance', name: 'Finance', short: 'FIN', color: '#7c3aed' },
     { id: 'hr', name: 'HR', short: 'HR', color: '#e91388' },
-    { id: 'infrastructure', name: 'Infrastructure', short: 'INF', color: '#3b82f6' },
+    { id: 'infrastructure', name: 'Infrastructure', short: 'INF', color: '#1e3a5f' },
     { id: 'marketing', name: 'Marketing', short: 'MKT', color: '#e91388' },
     { id: 'payroll', name: 'Payroll', short: 'PAY', color: '#7c3aed' },
     { id: 'product', name: 'Product', short: 'PRD', color: '#00a9a5' },
     { id: 'prof-services', name: 'Prof. Services', short: 'PS', color: '#f7941d' },
     { id: 'sales', name: 'Sales', short: 'SAL', color: '#e91388' },
-    { id: 'testing', name: 'Testing', short: 'TST', color: '#3b82f6' }
+    { id: 'testing', name: 'Testing', short: 'TST', color: '#1e3a5f' }
 ];
 
 var interactions = [
@@ -541,36 +389,6 @@ var interactions = [
     { from: 'testing', to: 'infrastructure', desc: 'We help distinguish application-level issues from infrastructure problems during testing and incidents' }
 ];
 
-function getValueName(color) {
-    var valueMap = {
-        '#f7941d': 'Always Go Beyond',
-        '#00a9a5': 'Ignite Growth',
-        '#e91388': 'Empower Through Innovation',
-        '#7c3aed': 'Trust Starts With Us',
-        '#3b82f6': 'Win Together'
-    };
-    return valueMap[color] || '';
-}
-
-function getDeptColor(deptId) {
-    for (var i = 0; i < departments.length; i++) {
-        if (departments[i].id === deptId) return departments[i].color;
-    }
-    return '#e91388';
-}
-
-function getLineColor(dept1, dept2) {
-    var c1 = getDeptColor(dept1);
-    var c2 = getDeptColor(dept2);
-    if (c1 === c2) return c1;
-    var colors = [c1, c2];
-    var priority = ['#f7941d', '#00a9a5', '#e91388', '#7c3aed', '#3b82f6'];
-    for (var p = 0; p < priority.length; p++) {
-        if (colors.indexOf(priority[p]) >= 0) return priority[p];
-    }
-    return c1;
-}
-
 var cx = 200, cy = 200, r = 150;
 var positions = {};
 var selected = null;
@@ -601,7 +419,6 @@ function init() {
         var parts = pairKeys[p].split('|');
         var dept1 = parts[0];
         var dept2 = parts[1];
-        var lineColor = getLineColor(dept1, dept2);
         
         var line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
         line.setAttribute('x1', positions[dept1].x);
@@ -609,7 +426,7 @@ function init() {
         line.setAttribute('x2', positions[dept2].x);
         line.setAttribute('y2', positions[dept2].y);
         line.setAttribute('class', 'connection-line');
-        line.setAttribute('stroke', lineColor);
+        line.setAttribute('stroke', '#e91388');
         line.setAttribute('data-dept1', dept1);
         line.setAttribute('data-dept2', dept2);
         line.setAttribute('filter', 'url(#glow)');
@@ -629,13 +446,14 @@ function init() {
         shadow.setAttribute('cx', pos.x);
         shadow.setAttribute('cy', pos.y + 3);
         shadow.setAttribute('r', 30);
-        shadow.setAttribute('fill', 'rgba(0,0,0,0.1)');
+        shadow.setAttribute('fill', 'rgba(0,0,0,0.3)');
+        shadow.setAttribute('filter', 'url(#glow)');
 
         var circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
         circle.setAttribute('cx', pos.x);
         circle.setAttribute('cy', pos.y);
         circle.setAttribute('r', 28);
-        circle.setAttribute('fill', 'white');
+        circle.setAttribute('fill', '#1e293b');
         circle.setAttribute('stroke', dept.color);
         circle.setAttribute('stroke-width', 4);
 
@@ -653,7 +471,7 @@ function init() {
         label.setAttribute('x', pos.x);
         label.setAttribute('y', pos.y + 45);
         label.setAttribute('text-anchor', 'middle');
-        label.setAttribute('fill', '#6b7280');
+        label.setAttribute('fill', '#94a3b8');
         label.setAttribute('font-size', '9');
         label.setAttribute('font-weight', '600');
         label.textContent = dept.name;
@@ -693,7 +511,7 @@ function updateView() {
         for (var i = 0; i < allNodes.length; i++) {
             allNodes[i].style.opacity = 1;
             var deptData = departments[i];
-            allNodes[i].querySelectorAll('circle')[1].setAttribute('fill', 'white');
+            allNodes[i].querySelectorAll('circle')[1].setAttribute('fill', '#1e293b');
             allNodes[i].querySelector('text').setAttribute('fill', deptData.color);
         }
         for (var j = 0; j < allLines.length; j++) {
@@ -718,7 +536,7 @@ function updateView() {
             allNodes[n].querySelectorAll('circle')[1].setAttribute('fill', deptInfo.color);
             allNodes[n].querySelector('text').setAttribute('fill', '#ffffff');
         } else {
-            allNodes[n].querySelectorAll('circle')[1].setAttribute('fill', 'white');
+            allNodes[n].querySelectorAll('circle')[1].setAttribute('fill', '#1e293b');
             allNodes[n].querySelector('text').setAttribute('fill', deptInfo.color);
         }
     }
@@ -781,17 +599,13 @@ function renderConnections() {
             var item = grouped[otherId][m];
             var arrowColor = item.dir === 'outgoing' ? '#00a9a5' : '#e91388';
             var arrow = item.dir === 'outgoing' ? '→' : '←';
-            var connectionColor = getLineColor(selected, otherId);
-            var valueName = getValueName(connectionColor);
-            itemsHtml += '<div class="connection-item" style="border-left-color: ' + connectionColor + '">';
-            itemsHtml += '<div style="flex: 1;"><span class="value-badge" style="background: ' + connectionColor + ';">' + valueName + '</span>';
-            itemsHtml += '<div style="display: flex; align-items: flex-start; gap: 10px; margin-top: 6px;"><span class="arrow" style="color: ' + arrowColor + '">' + arrow + '</span><span class="desc">' + item.desc + '</span></div></div></div>';
+            itemsHtml += '<div class="connection-item" style="border-left-color: ' + arrowColor + '"><span class="arrow" style="color: ' + arrowColor + '">' + arrow + '</span><span class="desc">' + item.desc + '</span></div>';
         }
 
         html += '<div class="connection-box" style="--box-color: ' + other.color + '">';
         html += '<div class="connection-header">';
         html += '<div class="dept-badge" style="background: ' + other.color + '">' + other.short + '</div>';
-        html += '<div class="dept-name">' + other.name + '</div>';
+        html += '<div class="dept-name" style="color: ' + other.color + '">' + other.name + '</div>';
         html += '</div>';
         html += '<div class="connection-items">' + itemsHtml + '</div>';
         html += '</div>';
