@@ -457,6 +457,42 @@
             color: #374151;
         }
         
+        .breadcrumb {
+            background: white;
+            padding: 16px 24px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.95em;
+        }
+        
+        .breadcrumb a {
+            color: #00a9a5;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .breadcrumb a:hover {
+            color: #ff6b9d;
+        }
+        
+        .breadcrumb-separator {
+            color: #cbd5e1;
+            font-weight: 300;
+        }
+        
+        .breadcrumb-current {
+            color: #64748b;
+            font-weight: 600;
+        }
+        
         @media (max-width: 768px) {
             .header h1 {
                 font-size: 2em;
@@ -478,6 +514,10 @@
 </head>
 <body>
     <div class="container">
+        <nav class="breadcrumb">
+            <span class="breadcrumb-current">🏠 Organisational Clarity Hub</span>
+        </nav>
+        
         <div class="header-card">
             <div class="header">
                 <div class="header-content">
