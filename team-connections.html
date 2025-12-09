@@ -3,20 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Team Connections</title>
+    <title>Team Connections - Win Together Better Together</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body { 
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             background: #f5f7fa;
             min-height: 100vh; 
-            padding: 24px;
-            color: #1f2937;
+            padding: 40px 20px;
+            line-height: 1.6;
             position: relative;
             overflow-x: hidden;
         }
         
+        /* Subtle animated background */
         body::before {
             content: '';
             position: fixed;
@@ -41,49 +42,33 @@
         
         .container { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
         
-        .breadcrumb {
-            background: white;
-            padding: 16px 24px;
-            border-radius: 12px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 0.95em;
-            flex-wrap: wrap;
-        }
-        
-        .breadcrumb a {
-            color: #00a9a5;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.2s ease;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-        
-        .breadcrumb a:hover {
-            color: #ff6b9d;
-        }
-        
-        .breadcrumb-separator {
-            color: #cbd5e1;
-            font-weight: 300;
-        }
-        
-        .breadcrumb-current {
-            color: #64748b;
-            font-weight: 600;
-        }
-        
         .header-card {
             background: white;
             border-radius: 16px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.07), 0 10px 30px rgba(0,0,0,0.08);
             overflow: hidden;
-            margin-bottom: 24px;
+            margin-bottom: 32px;
+            position: relative;
+        }
+        
+        .header-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, 
+                rgba(0, 169, 165, 0.05) 0%, 
+                rgba(13, 115, 119, 0.05) 25%,
+                rgba(255, 107, 157, 0.05) 50%,
+                rgba(247, 148, 29, 0.05) 75%,
+                rgba(0, 169, 165, 0.05) 100%);
+            background-size: 400% 400%;
+            animation: headerGradient 15s ease infinite;
+            opacity: 0.6;
+        }
+        
+        @keyframes headerGradient {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
         }
         
         .header { 
@@ -131,9 +116,14 @@
         
         .header h1 { 
             font-size: 2.5em; 
-            font-weight: 700; 
-            margin-bottom: 12px;
-            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+            font-weight: 700;
+            margin-bottom: 8px;
+            animation: titleGlow 3s ease-in-out infinite;
+        }
+        
+        @keyframes titleGlow {
+            0%, 100% { text-shadow: 0 2px 20px rgba(255, 255, 255, 0.3); }
+            50% { text-shadow: 0 2px 30px rgba(255, 255, 255, 0.5); }
         }
         
         .header p { 
@@ -149,8 +139,8 @@
             margin-bottom: 24px; 
             padding: 20px; 
             background: white;
-            border-radius: 16px; 
-            box-shadow: 0 4px 6px rgba(0,0,0,0.07);
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
         
         .value-item { 
@@ -160,43 +150,85 @@
             font-size: 0.85em; 
             font-weight: 600;
             padding: 8px 16px;
-            background: #f8fafc;
+            background: #f9fafb;
             border-radius: 20px;
-            transition: all 0.3s;
             border: 1px solid #e5e7eb;
+            transition: all 0.3s;
+            color: #374151;
         }
         
         .value-item:hover {
-            background: #f1f5f9;
+            background: white;
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
         }
         
         .value-dot { 
             width: 10px; 
             height: 10px; 
             border-radius: 50%; 
-            box-shadow: 0 0 8px currentColor;
+            animation: dotPulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes dotPulse {
+            0%, 100% { box-shadow: 0 0 8px currentColor; }
+            50% { box-shadow: 0 0 15px currentColor; }
         }
         
         .card { 
             background: white;
-            border-radius: 24px; 
-            padding: 32px;
+            border-radius: 16px;
+            padding: 40px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.07), 0 10px 30px rgba(0,0,0,0.08);
+            position: relative;
+            overflow: hidden;
         }
         
-        .svg-container { max-width: 520px; margin: 0 auto; }
-        svg { width: 100%; height: auto; overflow: visible; }
+        .card::before {
+            content: '';
+            position: absolute;
+            inset: -50%;
+            background: 
+                radial-gradient(circle at 25% 35%, rgba(0, 169, 165, 0.03) 0%, transparent 40%),
+                radial-gradient(circle at 75% 65%, rgba(255, 107, 157, 0.03) 0%, transparent 40%);
+            animation: cardFlow 12s ease-in-out infinite;
+            z-index: 0;
+        }
         
-        .dept-circle { cursor: pointer; transition: all 0.3s ease; }
-        .dept-circle:hover { transform: scale(1.15); filter: drop-shadow(0 0 12px currentColor); }
+        @keyframes cardFlow {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(30px, -30px) rotate(180deg); }
+        }
+        
+        .svg-container { 
+            max-width: 520px; 
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        svg { 
+            width: 100%; 
+            height: auto; 
+            overflow: visible;
+        }
+        
+        .dept-circle { 
+            cursor: pointer; 
+            transition: all 0.3s ease;
+        }
+        
+        .dept-circle:hover { 
+            transform: scale(1.15);
+            filter: drop-shadow(0 0 15px currentColor);
+        }
         
         .connection-line { 
             stroke-width: 3; 
             visibility: hidden;
-            filter: drop-shadow(0 0 4px currentColor);
+            transition: all 0.3s ease;
         }
+        
         .connection-line.active { 
             visibility: visible;
             animation: linePulse 2s ease-in-out infinite;
@@ -207,7 +239,13 @@
             50% { stroke-opacity: 0.6; stroke-width: 4; }
         }
         
-        .connections-panel { margin-top: 32px; display: none; }
+        .connections-panel { 
+            margin-top: 32px; 
+            display: none;
+            position: relative;
+            z-index: 1;
+        }
+        
         .connections-panel.active { 
             display: block; 
             animation: fadeInUp 0.5s ease;
@@ -225,8 +263,9 @@
             margin-bottom: 24px;
             color: #1f2937;
         }
+        
         .connections-title span { 
-            background: linear-gradient(135deg, var(--dept-color), #e91388);
+            background: linear-gradient(135deg, var(--dept-color), #ff6b9d);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -239,13 +278,14 @@
         
         .connection-box { 
             background: #f9fafb;
-            border-radius: 20px; 
+            border-radius: 12px;
             padding: 24px; 
             border: 1px solid #e5e7eb;
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
             overflow: hidden;
         }
+        
         .connection-box::before {
             content: '';
             position: absolute;
@@ -254,11 +294,17 @@
             width: 5px; 
             height: 100%;
             background: var(--box-color);
-            box-shadow: 0 0 15px var(--box-color);
+            animation: colorPulse 2s ease-in-out infinite;
         }
+        
+        @keyframes colorPulse {
+            0%, 100% { opacity: 1; box-shadow: 0 0 15px var(--box-color); }
+            50% { opacity: 0.7; box-shadow: 0 0 25px var(--box-color); }
+        }
+        
         .connection-box:hover { 
             transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+            box-shadow: 0 15px 35px rgba(0, 169, 165, 0.15);
             border-color: #00a9a5;
             background: white;
         }
@@ -271,6 +317,7 @@
             padding-bottom: 14px; 
             border-bottom: 1px solid #e5e7eb;
         }
+        
         .dept-badge { 
             width: 52px; 
             height: 52px; 
@@ -281,63 +328,121 @@
             color: white; 
             font-weight: 700; 
             font-size: 13px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
         }
+        
         .dept-name { 
             font-weight: 700; 
             font-size: 1.15em;
             color: #1f2937;
         }
         
-        .connection-items { display: flex; flex-direction: column; gap: 12px; }
+        .connection-items { 
+            display: flex; 
+            flex-direction: column; 
+            gap: 12px; 
+        }
+        
         .connection-item { 
             display: flex; 
             align-items: flex-start; 
             gap: 12px; 
             font-size: 0.9em; 
             padding: 14px; 
-            border-radius: 12px; 
+            border-radius: 8px; 
             background: white;
             border-left: 3px solid;
             transition: all 0.3s;
+            border: 1px solid #e5e7eb;
         }
+        
         .connection-item:hover {
-            background: #f1f5f9;
+            background: #f9fafb;
             transform: translateX(5px);
-        }
-        .arrow { font-weight: 700; font-size: 1.2em; }
-        .desc { color: #4b5563; line-height: 1.6; }
-        
-        .footer {
-            text-align: center;
-            margin-top: 40px;
-            padding: 30px;
-            background: white;
-            border-radius: 16px;
-            color: #6b7280;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.07);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
         
-        .footer p:first-child {
-            font-weight: 600;
-            color: #374151;
+        .arrow { 
+            font-weight: 700; 
+            font-size: 1.2em; 
         }
-
+        
+        .desc { 
+            color: #4b5563; 
+            line-height: 1.6; 
+        }
+        
+        .value-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.7em;
+            font-weight: 700;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: white;
+        }
+        
         @media (max-width: 768px) {
-            .header h1 { font-size: 1.8em; }
-            .header { padding: 30px 20px; }
-            .connections-grid { grid-template-columns: 1fr; }
+            .header {
+                padding: 40px 30px;
+            }
+            .header h1 {
+                font-size: 2em;
+            }
+            .card {
+                padding: 30px 20px;
+            }
+            .connections-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+.breadcrumb {
+            background: white;
+            padding: 16px 24px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.95em;
+            flex-wrap: wrap;
+        }
+        
+        .breadcrumb a {
+            color: #00a9a5;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .breadcrumb a:hover {
+            color: #ff6b9d;
+        }
+        
+        .breadcrumb-separator {
+            color: #cbd5e1;
+            font-weight: 300;
+        }
+        
+        .breadcrumb-current {
+            color: #64748b;
+            font-weight: 600;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <nav class="breadcrumb">
+<nav class="breadcrumb">
             <a href="index.html">🏠 Hub</a>
             <span class="breadcrumb-separator">›</span>
             <span class="breadcrumb-current">Win Together - Better Together</span>
         </nav>
-        
         <div class="header-card">
             <div class="header">
                 <div class="header-content">
@@ -348,11 +453,26 @@
         </div>
         
         <div class="values-legend">
-            <div class="value-item"><div class="value-dot" style="background: #1e3a5f; color: #1e3a5f;"></div><span style="color: #1e3a5f;">Win Together</span></div>
-            <div class="value-item"><div class="value-dot" style="background: #7c3aed; color: #7c3aed;"></div><span style="color: #7c3aed;">Trust Starts With Us</span></div>
-            <div class="value-item"><div class="value-dot" style="background: #e91388; color: #e91388;"></div><span style="color: #e91388;">Empower Through Innovation</span></div>
-            <div class="value-item"><div class="value-dot" style="background: #00a9a5; color: #00a9a5;"></div><span style="color: #00a9a5;">Ignite Growth</span></div>
-            <div class="value-item"><div class="value-dot" style="background: #f7941d; color: #f7941d;"></div><span style="color: #f7941d;">Always Go Beyond</span></div>
+            <div class="value-item">
+                <div class="value-dot" style="background: #3b82f6; color: #3b82f6;"></div>
+                <span>Win Together</span>
+            </div>
+            <div class="value-item">
+                <div class="value-dot" style="background: #7c3aed; color: #7c3aed;"></div>
+                <span>Trust Starts With Us</span>
+            </div>
+            <div class="value-item">
+                <div class="value-dot" style="background: #e91388; color: #e91388;"></div>
+                <span>Empower Through Innovation</span>
+            </div>
+            <div class="value-item">
+                <div class="value-dot" style="background: #00a9a5; color: #00a9a5;"></div>
+                <span>Ignite Growth</span>
+            </div>
+            <div class="value-item">
+                <div class="value-dot" style="background: #f7941d; color: #f7941d;"></div>
+                <span>Always Go Beyond</span>
+            </div>
         </div>
         
         <div class="card">
@@ -360,7 +480,7 @@
                 <svg viewBox="0 0 400 400" id="diagram">
                     <defs>
                         <filter id="glow">
-                            <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+                            <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
                             <feMerge>
                                 <feMergeNode in="coloredBlur"/>
                                 <feMergeNode in="SourceGraphic"/>
@@ -376,26 +496,21 @@
                 <div class="connections-grid" id="connectionsGrid"></div>
             </div>
         </div>
-        
-        <div class="footer">
-            <p>© 2024 S4Labour - Culture Club Initiative</p>
-            <p style="margin-top: 8px;">Building organisational clarity together</p>
-        </div>
     </div>
 <script>
 var departments = [
     { id: 'consulting', name: 'Consulting', short: 'CON', color: '#f7941d' },
     { id: 'customer-success', name: 'Customer Success', short: 'CS', color: '#00a9a5' },
-    { id: 'engineering', name: 'Engineering', short: 'ENG', color: '#1e3a5f' },
+    { id: 'engineering', name: 'Engineering', short: 'ENG', color: '#3b82f6' },
     { id: 'finance', name: 'Finance', short: 'FIN', color: '#7c3aed' },
     { id: 'hr', name: 'HR', short: 'HR', color: '#e91388' },
-    { id: 'infrastructure', name: 'Infrastructure', short: 'INF', color: '#1e3a5f' },
+    { id: 'infrastructure', name: 'Infrastructure', short: 'INF', color: '#3b82f6' },
     { id: 'marketing', name: 'Marketing', short: 'MKT', color: '#e91388' },
     { id: 'payroll', name: 'Payroll', short: 'PAY', color: '#7c3aed' },
     { id: 'product', name: 'Product', short: 'PRD', color: '#00a9a5' },
     { id: 'prof-services', name: 'Prof. Services', short: 'PS', color: '#f7941d' },
     { id: 'sales', name: 'Sales', short: 'SAL', color: '#e91388' },
-    { id: 'testing', name: 'Testing', short: 'TST', color: '#1e3a5f' }
+    { id: 'testing', name: 'Testing', short: 'TST', color: '#3b82f6' }
 ];
 
 var interactions = [
@@ -467,6 +582,36 @@ var interactions = [
     { from: 'testing', to: 'infrastructure', desc: 'We help distinguish application-level issues from infrastructure problems during testing and incidents' }
 ];
 
+function getValueName(color) {
+    var valueMap = {
+        '#f7941d': 'Always Go Beyond',
+        '#00a9a5': 'Ignite Growth',
+        '#e91388': 'Empower Through Innovation',
+        '#7c3aed': 'Trust Starts With Us',
+        '#3b82f6': 'Win Together'
+    };
+    return valueMap[color] || '';
+}
+
+function getDeptColor(deptId) {
+    for (var i = 0; i < departments.length; i++) {
+        if (departments[i].id === deptId) return departments[i].color;
+    }
+    return '#e91388';
+}
+
+function getLineColor(dept1, dept2) {
+    var c1 = getDeptColor(dept1);
+    var c2 = getDeptColor(dept2);
+    if (c1 === c2) return c1;
+    var colors = [c1, c2];
+    var priority = ['#f7941d', '#00a9a5', '#e91388', '#7c3aed', '#3b82f6'];
+    for (var p = 0; p < priority.length; p++) {
+        if (colors.indexOf(priority[p]) >= 0) return priority[p];
+    }
+    return c1;
+}
+
 var cx = 200, cy = 200, r = 150;
 var positions = {};
 var selected = null;
@@ -497,6 +642,7 @@ function init() {
         var parts = pairKeys[p].split('|');
         var dept1 = parts[0];
         var dept2 = parts[1];
+        var lineColor = getLineColor(dept1, dept2);
         
         var line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
         line.setAttribute('x1', positions[dept1].x);
@@ -504,7 +650,7 @@ function init() {
         line.setAttribute('x2', positions[dept2].x);
         line.setAttribute('y2', positions[dept2].y);
         line.setAttribute('class', 'connection-line');
-        line.setAttribute('stroke', '#e91388');
+        line.setAttribute('stroke', lineColor);
         line.setAttribute('data-dept1', dept1);
         line.setAttribute('data-dept2', dept2);
         line.setAttribute('filter', 'url(#glow)');
@@ -522,7 +668,7 @@ function init() {
 
         var shadow = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
         shadow.setAttribute('cx', pos.x);
-        shadow.setAttribute('cy', pos.y + 2);
+        shadow.setAttribute('cy', pos.y + 3);
         shadow.setAttribute('r', 30);
         shadow.setAttribute('fill', 'rgba(0,0,0,0.1)');
 
@@ -608,7 +754,7 @@ function updateView() {
         for (var d = 0; d < departments.length; d++) {
             if (departments[d].id === nodeId) { deptInfo = departments[d]; break; }
         }
-        allNodes[n].style.opacity = isConnected ? 1 : 0.25;
+        allNodes[n].style.opacity = isConnected ? 1 : 0.2;
         if (nodeId === selected) {
             allNodes[n].querySelectorAll('circle')[1].setAttribute('fill', deptInfo.color);
             allNodes[n].querySelector('text').setAttribute('fill', '#ffffff');
@@ -676,7 +822,11 @@ function renderConnections() {
             var item = grouped[otherId][m];
             var arrowColor = item.dir === 'outgoing' ? '#00a9a5' : '#e91388';
             var arrow = item.dir === 'outgoing' ? '→' : '←';
-            itemsHtml += '<div class="connection-item" style="border-left-color: ' + arrowColor + '"><span class="arrow" style="color: ' + arrowColor + '">' + arrow + '</span><span class="desc">' + item.desc + '</span></div>';
+            var connectionColor = getLineColor(selected, otherId);
+            var valueName = getValueName(connectionColor);
+            itemsHtml += '<div class="connection-item" style="border-left-color: ' + connectionColor + '">';
+            itemsHtml += '<div style="flex: 1;"><span class="value-badge" style="background: ' + connectionColor + ';">' + valueName + '</span>';
+            itemsHtml += '<div style="display: flex; align-items: flex-start; gap: 10px; margin-top: 6px;"><span class="arrow" style="color: ' + arrowColor + '">' + arrow + '</span><span class="desc">' + item.desc + '</span></div></div></div>';
         }
 
         html += '<div class="connection-box" style="--box-color: ' + other.color + '">';
