@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Connections - Win Together Better Together</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #f5f7fa;
+            min-height: 100vh; 
+            padding: 40px 20px;
+            line-height: 1.6;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        /* Subtle animated background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(0, 169, 165, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 107, 157, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 40% 20%, rgba(247, 148, 29, 0.03) 0%, transparent 50%);
+            animation: subtleFlow 20s ease-in-out infinite;
+            z-index: 0;
+            pointer-events: none;
+        }
+        
+        @keyframes subtleFlow {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(20px, -20px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(1.05); }
+        }
+        
+        .container { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
+        
+        .header-card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.07), 0 10px 30px rgba(0,0,0,0.08);
+            overflow: hidden;
+            margin-bottom: 32px;
+            position: relative;
+        }
+        
+        .header-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, 
+                rgba(0, 169, 165, 0.05) 0%, 
+                rgba(13, 115, 119, 0.05) 25%,
+                rgba(255, 107, 157, 0.05) 50%,
+                rgba(247, 148, 29, 0.05) 75%,
+                rgba(0, 169, 165, 0.05) 100%);
+            background-size: 400% 400%;
+            animation: headerGradient 15s ease infinite;
+            opacity: 0.6;
+        }
+        
+        @keyframes headerGradient {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        .header { 
+            background: linear-gradient(135deg, #00a9a5 0%, #0d7377 50%, #ff6b9d 100%);
+            color: white;
+            padding: 50px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.4;
+        }
+        
+        .header::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 30% 50%, rgba(255, 107, 157, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 70% 50%, rgba(247, 148, 29, 0.2) 0%, transparent 50%);
+            animation: headerLava 10s ease-in-out infinite;
+        }
+        
+        @keyframes headerLava {
+            0%, 100% { transform: scale(1) translate(0, 0); }
+            50% { transform: scale(1.15) translate(30px, -15px); }
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .header h1 { 
+            font-size: 2.5em; 
+            font-weight: 700;
+            margin-bottom: 8px;
+            animation: titleGlow 3s ease-in-out infinite;
+        }
+        
+        @keyframes titleGlow {
+            0%, 100% { text-shadow: 0 2px 20px rgba(255, 255, 255, 0.3); }
+            50% { text-shadow: 0 2px 30px rgba(255, 255, 255, 0.5); }
+        }
+        
+        .header p { 
+            font-size: 1.1em; 
+            opacity: 0.95;
+        }
+        
+        .values-legend { 
+            display: flex; 
+            flex-wrap: wrap; 
+            justify-content: center; 
+            gap: 16px; 
+            margin-bottom: 24px; 
+            padding: 20px; 
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        
+        .value-item { 
+            display: flex; 
+            align-items: center; 
+            gap: 8px; 
+            font-size: 0.85em; 
+            font-weight: 600;
+            padding: 8px 16px;
+            background: #f9fafb;
+            border-radius: 20px;
+            border: 1px solid #e5e7eb;
+            transition: all 0.3s;
+            color: #374151;
+        }
+        
+        .value-item:hover {
+            background: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        
+        .value-dot { 
+            width: 10px; 
+            height: 10px; 
+            border-radius: 50%; 
+            animation: dotPulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes dotPulse {
+            0%, 100% { box-shadow: 0 0 8px currentColor; }
+            50% { box-shadow: 0 0 15px currentColor; }
+        }
+        
+        .card { 
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.07), 0 10px 30px rgba(0,0,0,0.08);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            inset: -50%;
+            background: 
+                radial-gradient(circle at 25% 35%, rgba(0, 169, 165, 0.03) 0%, transparent 40%),
+                radial-gradient(circle at 75% 65%, rgba(255, 107, 157, 0.03) 0%, transparent 40%);
+            animation: cardFlow 12s ease-in-out infinite;
+            z-index: 0;
+        }
+        
+        @keyframes cardFlow {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(30px, -30px) rotate(180deg); }
+        }
+        
+        .svg-container { 
+            max-width: 520px; 
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        svg { 
+            width: 100%; 
+            height: auto; 
+            overflow: visible;
+        }
+        
+        .dept-circle { 
+            cursor: pointer; 
+            transition: all 0.3s ease;
+        }
+        
+        .dept-circle:hover { 
+            transform: scale(1.15);
+            filter: drop-shadow(0 0 15px currentColor);
+        }
+        
+        .connection-line { 
+            stroke-width: 3; 
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .connection-line.active { 
+            visibility: visible;
+            animation: linePulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes linePulse {
+            0%, 100% { stroke-opacity: 1; stroke-width: 3; }
+            50% { stroke-opacity: 0.6; stroke-width: 4; }
+        }
+        
+        .connections-panel { 
+            margin-top: 32px; 
+            display: none;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .connections-panel.active { 
+            display: block; 
+            animation: fadeInUp 0.5s ease;
+        }
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .connections-title { 
+            font-weight: 700; 
+            font-size: 1.4em; 
+            text-align: center; 
+            margin-bottom: 24px;
+            color: #1f2937;
+        }
+        
+        .connections-title span { 
+            background: linear-gradient(135deg, var(--dept-color), #ff6b9d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .connections-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); 
+            gap: 20px; 
+        }
+        
+        .connection-box { 
+            background: #f9fafb;
+            border-radius: 12px;
+            padding: 24px; 
+            border: 1px solid #e5e7eb;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .connection-box::before {
+            content: '';
+            position: absolute;
+            top: 0; 
+            left: 0;
+            width: 5px; 
+            height: 100%;
+            background: var(--box-color);
+            animation: colorPulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes colorPulse {
+            0%, 100% { opacity: 1; box-shadow: 0 0 15px var(--box-color); }
+            50% { opacity: 0.7; box-shadow: 0 0 25px var(--box-color); }
+        }
+        
+        .connection-box:hover { 
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(0, 169, 165, 0.15);
+            border-color: #00a9a5;
+            background: white;
+        }
+        
+        .connection-header { 
+            display: flex; 
+            align-items: center; 
+            gap: 14px; 
+            margin-bottom: 18px; 
+            padding-bottom: 14px; 
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .dept-badge { 
+            width: 52px; 
+            height: 52px; 
+            border-radius: 14px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            color: white; 
+            font-weight: 700; 
+            font-size: 13px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        
+        .dept-name { 
+            font-weight: 700; 
+            font-size: 1.15em;
+            color: #1f2937;
+        }
+        
+        .connection-items { 
+            display: flex; 
+            flex-direction: column; 
+            gap: 12px; 
+        }
+        
+        .connection-item { 
+            display: flex; 
+            align-items: flex-start; 
+            gap: 12px; 
+            font-size: 0.9em; 
+            padding: 14px; 
+            border-radius: 8px; 
+            background: white;
+            border-left: 3px solid;
+            transition: all 0.3s;
+            border: 1px solid #e5e7eb;
+        }
+        
+        .connection-item:hover {
+            background: #f9fafb;
+            transform: translateX(5px);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        
+        .arrow { 
+            font-weight: 700; 
+            font-size: 1.2em; 
+        }
+        
+        .desc { 
+            color: #4b5563; 
+            line-height: 1.6; 
+        }
+        
+        .value-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.7em;
+            font-weight: 700;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            .header {
+                padding: 40px 30px;
+            }
+            .header h1 {
+                font-size: 2em;
+            }
+            .card {
+                padding: 30px 20px;
+            }
+            .connections-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header-card">
+            <div class="header">
+                <div class="header-content">
+                    <h1>Team Connections</h1>
+                    <p>Click a team to explore how we collaborate across the organisation</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="values-legend">
+            <div class="value-item">
+                <div class="value-dot" style="background: #3b82f6; color: #3b82f6;"></div>
+                <span>Win Together</span>
+            </div>
+            <div class="value-item">
+                <div class="value-dot" style="background: #7c3aed; color: #7c3aed;"></div>
+                <span>Trust Starts With Us</span>
+            </div>
+            <div class="value-item">
+                <div class="value-dot" style="background: #e91388; color: #e91388;"></div>
+                <span>Empower Through Innovation</span>
+            </div>
+            <div class="value-item">
+                <div class="value-dot" style="background: #00a9a5; color: #00a9a5;"></div>
+                <span>Ignite Growth</span>
+            </div>
+            <div class="value-item">
+                <div class="value-dot" style="background: #f7941d; color: #f7941d;"></div>
+                <span>Always Go Beyond</span>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="svg-container">
+                <svg viewBox="0 0 400 400" id="diagram">
+                    <defs>
+                        <filter id="glow">
+                            <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                            <feMerge>
+                                <feMergeNode in="coloredBlur"/>
+                                <feMergeNode in="SourceGraphic"/>
+                            </feMerge>
+                        </filter>
+                    </defs>
+                    <g id="lines"></g>
+                    <g id="nodes"></g>
+                </svg>
+            </div>
+            <div class="connections-panel" id="connectionsPanel">
+                <div class="connections-title" id="connectionsTitle"></div>
+                <div class="connections-grid" id="connectionsGrid"></div>
+            </div>
+        </div>
+    </div>
+<script>
+var departments = [
+    { id: 'consulting', name: 'Consulting', short: 'CON', color: '#f7941d' },
+    { id: 'customer-success', name: 'Customer Success', short: 'CS', color: '#00a9a5' },
+    { id: 'engineering', name: 'Engineering', short: 'ENG', color: '#3b82f6' },
+    { id: 'finance', name: 'Finance', short: 'FIN', color: '#7c3aed' },
+    { id: 'hr', name: 'HR', short: 'HR', color: '#e91388' },
+    { id: 'infrastructure', name: 'Infrastructure', short: 'INF', color: '#3b82f6' },
+    { id: 'marketing', name: 'Marketing', short: 'MKT', color: '#e91388' },
+    { id: 'payroll', name: 'Payroll', short: 'PAY', color: '#7c3aed' },
+    { id: 'product', name: 'Product', short: 'PRD', color: '#00a9a5' },
+    { id: 'prof-services', name: 'Prof. Services', short: 'PS', color: '#f7941d' },
+    { id: 'sales', name: 'Sales', short: 'SAL', color: '#e91388' },
+    { id: 'testing', name: 'Testing', short: 'TST', color: '#3b82f6' }
+];
+
+var interactions = [
+    { from: 'consulting', to: 'sales', desc: 'We supply Sales with ROI calculations, labour cost saving examples, and productivity improvement case studies to help them demonstrate tangible value during prospect conversations' },
+    { from: 'consulting', to: 'marketing', desc: 'We collaborate on thought leadership content, sharing operational excellence insights and customer success metrics that showcase our expertise in workforce optimisation' },
+    { from: 'consulting', to: 'customer-success', desc: 'We provide strategic advice and best practice recommendations for client accounts, helping Customer Success deliver ongoing value to existing customers' },
+    { from: 'consulting', to: 'product', desc: 'We share operational insights, feature usage patterns, and workflow improvement ideas based on what we learn from client engagements' },
+    { from: 'customer-success', to: 'product', desc: 'We channel feature requests from clients, provide usage feedback, and help prioritise enhancements based on customer needs and pain points' },
+    { from: 'customer-success', to: 'engineering', desc: 'We report bugs with detailed reproduction steps, assess impact on clients, and coordinate resolution timelines for live system issues' },
+    { from: 'customer-success', to: 'consulting', desc: 'We identify and qualify opportunities for consulting engagements with existing clients who could benefit from deeper workforce optimisation support' },
+    { from: 'customer-success', to: 'sales', desc: 'We collaborate on renewal opportunities, flag expansion leads, and share client satisfaction feedback to support retention and growth' },
+    { from: 'customer-success', to: 'marketing', desc: 'We help source customer testimonials, facilitate case study interviews, and share success stories for marketing campaigns' },
+    { from: 'customer-success', to: 'finance', desc: 'We provide renewal forecasts, flag churn risk indicators, and share revenue retention projections for financial planning' },
+    { from: 'customer-success', to: 'prof-services', desc: 'We give feedback on onboarding quality and handover effectiveness to help improve the implementation experience for future clients' },
+    { from: 'engineering', to: 'product', desc: 'We provide technical feasibility assessments, effort estimates for proposed features, and advise on implementation approaches' },
+    { from: 'engineering', to: 'customer-success', desc: 'We deliver bug fixes, maintain system stability, and resolve live issues promptly to ensure clients have a reliable platform' },
+    { from: 'engineering', to: 'prof-services', desc: 'We provide technical support during client onboarding, fix bugs discovered during implementation, and ensure system stability for go-lives' },
+    { from: 'engineering', to: 'payroll', desc: 'We ensure accurate data extraction, fix payroll-impacting bugs as priority, and maintain the reliability of data flows' },
+    { from: 'engineering', to: 'testing', desc: 'We deploy code for testing, implement bug fixes, and work closely with testers to validate features before release' },
+    { from: 'engineering', to: 'infrastructure', desc: 'We specify deployment requirements, collaborate on system architecture, and coordinate on performance optimisation' },
+    { from: 'engineering', to: 'sales', desc: 'We maintain stable demo environments, provide technical validation during complex sales cycles, and support proof-of-concept trials' },
+    { from: 'engineering', to: 'marketing', desc: 'We validate technical accuracy of marketing claims and ensure demo environments are reliable for campaigns and events' },
+    { from: 'finance', to: 'sales', desc: 'We provide pricing approvals, guidance on contract terms, calculate sales commissions, and support deal structuring' },
+    { from: 'finance', to: 'hr', desc: 'We process internal payroll for S4Labour employees, manage compensation guidelines, and coordinate on benefits administration' },
+    { from: 'finance', to: 'marketing', desc: 'We allocate campaign budgets, set ROI tracking requirements, and approve marketing expenditure requests' },
+    { from: 'finance', to: 'product', desc: 'We manage the development budget, evaluate feature investment decisions, and track product development ROI' },
+    { from: 'finance', to: 'consulting', desc: 'We approve consulting engagement pricing and track profitability across consulting projects' },
+    { from: 'hr', to: 'finance', desc: 'We coordinate on payroll processing, benefits administration, and compensation planning for the organisation' },
+    { from: 'hr', to: 'infrastructure', desc: 'We work together on HR systems, ensure data security compliance, and manage technology access for employees' },
+    { from: 'infrastructure', to: 'engineering', desc: 'We provide development environments, maintain deployment pipelines, and support the technical infrastructure Engineering relies on' },
+    { from: 'infrastructure', to: 'testing', desc: 'We provision and maintain test environments, support data setup capabilities, and handle environment refresh requests' },
+    { from: 'infrastructure', to: 'prof-services', desc: 'We handle client environment provisioning, database setup for new implementations, and manage system access for onboarding' },
+    { from: 'infrastructure', to: 'payroll', desc: 'We ensure database integrity, maintain system uptime during critical payroll processing windows, and manage data backups' },
+    { from: 'infrastructure', to: 'marketing', desc: 'We host and maintain the s4labour.com website, ensure uptime, and optimise performance for visitor experience' },
+    { from: 'infrastructure', to: 'product', desc: 'We provide infrastructure for analytics tools like Pendo and supply system performance data for product decisions' },
+    { from: 'infrastructure', to: 'customer-success', desc: 'We maintain system stability and uptime, ensuring clients have a reliable platform that supports their operations' },
+    { from: 'infrastructure', to: 'sales', desc: 'We ensure demo environment availability and system performance during prospect trials and evaluations' },
+    { from: 'marketing', to: 'sales', desc: 'We generate and pass qualified leads from campaigns, events, and content marketing to the Sales team for follow-up' },
+    { from: 'marketing', to: 'product', desc: 'We share market feedback, competitive intelligence, and customer pain points discovered through campaign interactions' },
+    { from: 'marketing', to: 'prof-services', desc: 'We provide website traffic and lead volume forecasts to help Professional Services plan implementation capacity' },
+    { from: 'marketing', to: 'consulting', desc: 'We collaborate on thought leadership content and provide marketing materials for client presentations' },
+    { from: 'marketing', to: 'hr', desc: 'We support employer brand development and provide recruitment marketing materials to attract top talent' },
+    { from: 'payroll', to: 'customer-success', desc: 'We provide payroll status updates and resolution timelines so Customer Success can keep clients informed' },
+    { from: 'payroll', to: 'product', desc: 'We flag data quality issues and system limitations that affect payroll accuracy, helping inform product improvements' },
+    { from: 'payroll', to: 'engineering', desc: 'We report bugs and data issues that need fixing, particularly those affecting payroll accuracy and processing' },
+    { from: 'payroll', to: 'finance', desc: 'We provide payroll service revenue data and client billing information for financial reporting' },
+    { from: 'payroll', to: 'sales', desc: 'We clarify payroll service capabilities and limitations so Sales can set accurate expectations with prospects' },
+    { from: 'product', to: 'engineering', desc: 'We provide clear feature specifications, acceptance criteria, and a prioritised backlog for development' },
+    { from: 'product', to: 'marketing', desc: 'We share roadmap visibility, feature details for campaigns, technical accuracy reviews, and UI/UX assets' },
+    { from: 'product', to: 'sales', desc: 'We provide product roadmap information, feature capabilities, and demo environments for sales conversations' },
+    { from: 'product', to: 'prof-services', desc: 'We supply system documentation, configuration guidance, and training materials on new features for implementations' },
+    { from: 'product', to: 'customer-success', desc: 'We share feature release schedules, system capabilities, and roadmap transparency to support client conversations' },
+    { from: 'product', to: 'consulting', desc: 'We ensure Consulting understands product capabilities and technical limitations for their client recommendations' },
+    { from: 'product', to: 'testing', desc: 'We provide feature requirements and expected behaviour documentation to support comprehensive test planning' },
+    { from: 'prof-services', to: 'customer-success', desc: 'We hand over successfully onboarded clients with thorough documentation and context to set up the ongoing relationship' },
+    { from: 'prof-services', to: 'payroll', desc: 'We ensure clean, accurate client data setup so Payroll can process payrolls reliably from day one' },
+    { from: 'prof-services', to: 'consulting', desc: 'We identify when clients are ready for consulting engagements and provide context on their system setup and capabilities' },
+    { from: 'prof-services', to: 'sales', desc: 'We share implementation feedback, common concerns from clients, and success stories to improve the sales process' },
+    { from: 'prof-services', to: 'product', desc: 'We provide user feedback on system usability, highlight feature gaps identified during onboarding, and share client pain points' },
+    { from: 'prof-services', to: 'marketing', desc: 'We help source customer success stories, implementation case studies, and testimonials for marketing use' },
+    { from: 'sales', to: 'prof-services', desc: 'We hand over signed contracts with clear documentation of client expectations set during the sales process' },
+    { from: 'sales', to: 'marketing', desc: 'We provide lead quality feedback, share competitive insights from sales conversations, and flag customer pain points' },
+    { from: 'sales', to: 'product', desc: 'We channel customer feature requests, share market demand signals, and provide competitive feature analysis' },
+    { from: 'sales', to: 'finance', desc: 'We provide revenue forecasts, pipeline reports, and contract value projections for financial planning' },
+    { from: 'sales', to: 'customer-success', desc: 'We hand over new client information and expectations set during sales to ensure a smooth transition' },
+    { from: 'sales', to: 'consulting', desc: 'We identify and refer opportunities for consulting engagements with new or existing clients' },
+    { from: 'testing', to: 'engineering', desc: 'We identify bugs with detailed reproduction steps, validate fixes, and ensure quality before releases go live' },
+    { from: 'testing', to: 'product', desc: 'We provide quality feedback, usability insights, and feature verification to help improve the product' },
+    { from: 'testing', to: 'infrastructure', desc: 'We help distinguish application-level issues from infrastructure problems during testing and incidents' }
+];
+
+function getValueName(color) {
+    var valueMap = {
+        '#f7941d': 'Always Go Beyond',
+        '#00a9a5': 'Ignite Growth',
+        '#e91388': 'Empower Through Innovation',
+        '#7c3aed': 'Trust Starts With Us',
+        '#3b82f6': 'Win Together'
+    };
+    return valueMap[color] || '';
+}
+
+function getDeptColor(deptId) {
+    for (var i = 0; i < departments.length; i++) {
+        if (departments[i].id === deptId) return departments[i].color;
+    }
+    return '#e91388';
+}
+
+function getLineColor(dept1, dept2) {
+    var c1 = getDeptColor(dept1);
+    var c2 = getDeptColor(dept2);
+    if (c1 === c2) return c1;
+    var colors = [c1, c2];
+    var priority = ['#f7941d', '#00a9a5', '#e91388', '#7c3aed', '#3b82f6'];
+    for (var p = 0; p < priority.length; p++) {
+        if (colors.indexOf(priority[p]) >= 0) return priority[p];
+    }
+    return c1;
+}
+
+var cx = 200, cy = 200, r = 150;
+var positions = {};
+var selected = null;
+
+function init() {
+    var linesG = document.getElementById('lines');
+    var nodesG = document.getElementById('nodes');
+
+    for (var i = 0; i < departments.length; i++) {
+        var angle = (i / departments.length) * 2 * Math.PI - Math.PI / 2;
+        positions[departments[i].id] = {
+            x: cx + r * Math.cos(angle),
+            y: cy + r * Math.sin(angle)
+        };
+    }
+
+    var allPairs = {};
+    for (var j = 0; j < interactions.length; j++) {
+        var conn = interactions[j];
+        var a = conn.from;
+        var b = conn.to;
+        var pairKey = a < b ? a + '|' + b : b + '|' + a;
+        allPairs[pairKey] = true;
+    }
+
+    var pairKeys = Object.keys(allPairs);
+    for (var p = 0; p < pairKeys.length; p++) {
+        var parts = pairKeys[p].split('|');
+        var dept1 = parts[0];
+        var dept2 = parts[1];
+        var lineColor = getLineColor(dept1, dept2);
+        
+        var line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        line.setAttribute('x1', positions[dept1].x);
+        line.setAttribute('y1', positions[dept1].y);
+        line.setAttribute('x2', positions[dept2].x);
+        line.setAttribute('y2', positions[dept2].y);
+        line.setAttribute('class', 'connection-line');
+        line.setAttribute('stroke', lineColor);
+        line.setAttribute('data-dept1', dept1);
+        line.setAttribute('data-dept2', dept2);
+        line.setAttribute('filter', 'url(#glow)');
+        linesG.appendChild(line);
+    }
+
+    for (var k = 0; k < departments.length; k++) {
+        var dept = departments[k];
+        var pos = positions[dept.id];
+        var g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+        g.setAttribute('class', 'dept-circle');
+        g.setAttribute('data-id', dept.id);
+        g.style.transformOrigin = pos.x + 'px ' + pos.y + 'px';
+        g.onclick = (function(id) { return function() { selectDept(id); }; })(dept.id);
+
+        var shadow = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        shadow.setAttribute('cx', pos.x);
+        shadow.setAttribute('cy', pos.y + 3);
+        shadow.setAttribute('r', 30);
+        shadow.setAttribute('fill', 'rgba(0,0,0,0.1)');
+
+        var circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        circle.setAttribute('cx', pos.x);
+        circle.setAttribute('cy', pos.y);
+        circle.setAttribute('r', 28);
+        circle.setAttribute('fill', 'white');
+        circle.setAttribute('stroke', dept.color);
+        circle.setAttribute('stroke-width', 4);
+
+        var text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        text.setAttribute('x', pos.x);
+        text.setAttribute('y', pos.y);
+        text.setAttribute('text-anchor', 'middle');
+        text.setAttribute('dy', '0.35em');
+        text.setAttribute('fill', dept.color);
+        text.setAttribute('font-size', '11');
+        text.setAttribute('font-weight', '700');
+        text.textContent = dept.short;
+
+        var label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        label.setAttribute('x', pos.x);
+        label.setAttribute('y', pos.y + 45);
+        label.setAttribute('text-anchor', 'middle');
+        label.setAttribute('fill', '#6b7280');
+        label.setAttribute('font-size', '9');
+        label.setAttribute('font-weight', '600');
+        label.textContent = dept.name;
+
+        g.appendChild(shadow);
+        g.appendChild(circle);
+        g.appendChild(text);
+        g.appendChild(label);
+        nodesG.appendChild(g);
+    }
+}
+
+function selectDept(id) {
+    selected = (selected === id) ? null : id;
+    updateView();
+}
+
+function getConnectedDepts(deptId) {
+    var connected = [];
+    for (var i = 0; i < interactions.length; i++) {
+        if (interactions[i].from === deptId && connected.indexOf(interactions[i].to) === -1) {
+            connected.push(interactions[i].to);
+        }
+        if (interactions[i].to === deptId && connected.indexOf(interactions[i].from) === -1) {
+            connected.push(interactions[i].from);
+        }
+    }
+    return connected;
+}
+
+function updateView() {
+    var allNodes = document.querySelectorAll('.dept-circle');
+    var allLines = document.querySelectorAll('.connection-line');
+    var panel = document.getElementById('connectionsPanel');
+
+    if (!selected) {
+        for (var i = 0; i < allNodes.length; i++) {
+            allNodes[i].style.opacity = 1;
+            var deptData = departments[i];
+            allNodes[i].querySelectorAll('circle')[1].setAttribute('fill', 'white');
+            allNodes[i].querySelector('text').setAttribute('fill', deptData.color);
+        }
+        for (var j = 0; j < allLines.length; j++) {
+            allLines[j].classList.remove('active');
+        }
+        panel.classList.remove('active');
+        return;
+    }
+
+    var connectedIds = getConnectedDepts(selected);
+    connectedIds.push(selected);
+
+    for (var n = 0; n < allNodes.length; n++) {
+        var nodeId = allNodes[n].getAttribute('data-id');
+        var isConnected = connectedIds.indexOf(nodeId) >= 0;
+        var deptInfo = null;
+        for (var d = 0; d < departments.length; d++) {
+            if (departments[d].id === nodeId) { deptInfo = departments[d]; break; }
+        }
+        allNodes[n].style.opacity = isConnected ? 1 : 0.2;
+        if (nodeId === selected) {
+            allNodes[n].querySelectorAll('circle')[1].setAttribute('fill', deptInfo.color);
+            allNodes[n].querySelector('text').setAttribute('fill', '#ffffff');
+        } else {
+            allNodes[n].querySelectorAll('circle')[1].setAttribute('fill', 'white');
+            allNodes[n].querySelector('text').setAttribute('fill', deptInfo.color);
+        }
+    }
+
+    for (var l = 0; l < allLines.length; l++) {
+        var dept1 = allLines[l].getAttribute('data-dept1');
+        var dept2 = allLines[l].getAttribute('data-dept2');
+        if (dept1 === selected || dept2 === selected) {
+            allLines[l].classList.add('active');
+        } else {
+            allLines[l].classList.remove('active');
+        }
+    }
+
+    renderConnections();
+}
+
+function renderConnections() {
+    var panel = document.getElementById('connectionsPanel');
+    var title = document.getElementById('connectionsTitle');
+    var grid = document.getElementById('connectionsGrid');
+
+    var dept = null;
+    for (var d = 0; d < departments.length; d++) {
+        if (departments[d].id === selected) { dept = departments[d]; break; }
+    }
+
+    var grouped = {};
+    for (var c = 0; c < interactions.length; c++) {
+        var conn = interactions[c];
+        if (conn.from === selected || conn.to === selected) {
+            var otherId = conn.from === selected ? conn.to : conn.from;
+            var dir = conn.from === selected ? 'outgoing' : 'incoming';
+            if (!grouped[otherId]) grouped[otherId] = [];
+            grouped[otherId].push({ desc: conn.desc, dir: dir });
+        }
+    }
+
+    var sortedKeys = Object.keys(grouped).sort(function(a, b) {
+        var na, nb;
+        for (var i = 0; i < departments.length; i++) {
+            if (departments[i].id === a) na = departments[i].name;
+            if (departments[i].id === b) nb = departments[i].name;
+        }
+        return na.localeCompare(nb);
+    });
+
+    title.innerHTML = '<span style="--dept-color: ' + dept.color + '">' + dept.name + '</span> works closely with ' + sortedKeys.length + ' teams';
+
+    var html = '';
+    for (var k = 0; k < sortedKeys.length; k++) {
+        var otherId = sortedKeys[k];
+        var other = null;
+        for (var x = 0; x < departments.length; x++) {
+            if (departments[x].id === otherId) { other = departments[x]; break; }
+        }
+
+        var itemsHtml = '';
+        for (var m = 0; m < grouped[otherId].length; m++) {
+            var item = grouped[otherId][m];
+            var arrowColor = item.dir === 'outgoing' ? '#00a9a5' : '#e91388';
+            var arrow = item.dir === 'outgoing' ? '→' : '←';
+            var connectionColor = getLineColor(selected, otherId);
+            var valueName = getValueName(connectionColor);
+            itemsHtml += '<div class="connection-item" style="border-left-color: ' + connectionColor + '">';
+            itemsHtml += '<div style="flex: 1;"><span class="value-badge" style="background: ' + connectionColor + ';">' + valueName + '</span>';
+            itemsHtml += '<div style="display: flex; align-items: flex-start; gap: 10px; margin-top: 6px;"><span class="arrow" style="color: ' + arrowColor + '">' + arrow + '</span><span class="desc">' + item.desc + '</span></div></div></div>';
+        }
+
+        html += '<div class="connection-box" style="--box-color: ' + other.color + '">';
+        html += '<div class="connection-header">';
+        html += '<div class="dept-badge" style="background: ' + other.color + '">' + other.short + '</div>';
+        html += '<div class="dept-name">' + other.name + '</div>';
+        html += '</div>';
+        html += '<div class="connection-items">' + itemsHtml + '</div>';
+        html += '</div>';
+    }
+
+    grid.innerHTML = html;
+    panel.classList.add('active');
+}
+
+init();
+</script>
+</body>
+</html>
