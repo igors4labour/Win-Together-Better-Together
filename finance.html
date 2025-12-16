@@ -5,292 +5,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Finance Department Responsibilities</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        @keyframes waveFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
         
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: #f5f7fa;
-            min-height: 100vh;
-            padding: 40px 20px;
-            line-height: 1.6;
-        }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; background: #f5f7fa; min-height: 100vh; padding: 40px 20px; line-height: 1.6; }
+        .container { max-width: 1100px; margin: 0 auto; background: white; border-radius: 16px; box-shadow: 0 4px 6px rgba(0,0,0,0.07), 0 10px 30px rgba(0,0,0,0.08); overflow: hidden; }
+        .header { background: linear-gradient(135deg, #00a9a5 0%, #0d7377 25%, #ff6b9d 50%, #0d7377 75%, #00a9a5 100%); background-size: 400% 400%; animation: waveFlow 8s ease infinite; color: white; padding: 60px 50px; position: relative; overflow: hidden; }
+        .header::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.08'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); }
+        .header-content { position: relative; z-index: 1; }
+        .header h1 { font-size: 2.5em; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.5px; }
+        .header .subtitle { font-size: 1.1em; opacity: 0.95; font-weight: 400; }
+        .content { padding: 50px; }
+        .intro-section { background: linear-gradient(135deg, rgba(0, 169, 165, 0.08) 0%, rgba(255, 107, 157, 0.08) 100%); border-left: 4px solid #00a9a5; padding: 30px; border-radius: 12px; margin-bottom: 40px; }
+        .intro-section h2 { color: #00a9a5; font-size: 1.4em; margin-bottom: 12px; font-weight: 600; }
+        .intro-section p { color: #555; font-size: 1.05em; line-height: 1.7; }
+        .section { margin-bottom: 35px; border-radius: 12px; overflow: hidden; border: 1px solid #e5e7eb; transition: all 0.3s ease; }
+        .section:hover { box-shadow: 0 4px 12px rgba(0, 169, 165, 0.25); border-color: #00a9a5; }
+        .section-header { background: linear-gradient(135deg, #00a9a5 0%, #0d7377 25%, #ff6b9d 50%, #0d7377 75%, #00a9a5 100%); background-size: 400% 400%; animation: waveFlow 8s ease infinite; color: white; padding: 22px 30px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: all 0.3s ease; }
+        .section-header h2 { font-size: 1.3em; font-weight: 600; letter-spacing: -0.3px; }
+        .collapse-icon { font-size: 1.5em; transition: transform 0.3s ease; font-weight: 300; }
+        .section-header.collapsed .collapse-icon { transform: rotate(-90deg); }
+        .section-content { padding: 30px; background: white; max-height: 5000px; overflow: hidden; transition: max-height 0.3s ease-out, padding 0.3s; }
+        .section-content.collapsed { max-height: 0; padding: 0 30px; }
+        .values-section h3 { background: linear-gradient(135deg, #00a9a5, #ff6b9d); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-size: 1.15em; margin: 25px 0 15px 0; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+        .values-section h3:first-child { margin-top: 0; }
+        .values-list { list-style: none; padding: 0; }
+        .values-list li { margin-bottom: 14px; padding-left: 30px; position: relative; line-height: 1.65; color: #374151; font-size: 0.98em; }
+        .values-list li:before { content: "→"; position: absolute; left: 0; color: #00a9a5; font-weight: bold; font-size: 1.2em; }
+        .responsibility-item { margin-bottom: 12px; padding: 16px 20px; background: #f9fafb; border-radius: 8px; transition: all 0.2s ease; border-left: 3px solid transparent; }
+        .responsibility-item:hover { background: linear-gradient(135deg, rgba(0, 169, 165, 0.05) 0%, rgba(255, 107, 157, 0.05) 100%); border-left-color: #ff6b9d; transform: translateX(4px); box-shadow: 0 2px 8px rgba(0, 169, 165, 0.15); }
+        .item-wrapper { display: flex; align-items: flex-start; }
+        .bullet { width: 8px; height: 8px; border-radius: 50%; margin-right: 14px; margin-top: 7px; flex-shrink: 0; background: linear-gradient(135deg, #00a9a5, #ff6b9d); }
+        .item-label { flex: 1; line-height: 1.6; color: #374151; font-size: 0.98em; }
+        .item-label strong { color: #1f2937; font-weight: 600; }
+        @media print { body { background: white; padding: 0; } .section-content { max-height: none !important; padding: 30px !important; } .section { page-break-inside: avoid; } .section-header { background: #00a9a5 !important; } }
+        @media (max-width: 768px) { .content { padding: 30px 25px; } .header { padding: 40px 30px; } .header h1 { font-size: 2em; } }
         
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 16px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.07), 0 10px 30px rgba(0,0,0,0.08);
-            overflow: hidden;
-        }
-        
-        .header {
-            background: linear-gradient(135deg, #00a9a5 0%, #0d7377 50%, #ff6b9d 100%);
-            color: white;
-            padding: 60px 50px;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-            opacity: 0.4;
-        }
-        
-        .header-content {
-            position: relative;
-            z-index: 1;
-        }
-        
-        .header h1 {
-            font-size: 2.5em;
-            font-weight: 700;
-            margin-bottom: 8px;
-            letter-spacing: -0.5px;
-        }
-        
-        .header .subtitle {
-            font-size: 1.1em;
-            opacity: 0.95;
-            font-weight: 400;
-        }
-        
-        .content {
-            padding: 50px;
-        }
-        
-        .intro-section {
-            background: linear-gradient(135deg, rgba(0, 169, 165, 0.08) 0%, rgba(255, 107, 157, 0.08) 100%);
-            border-left: 4px solid #00a9a5;
-            padding: 30px;
-            border-radius: 12px;
-            margin-bottom: 40px;
-        }
-        
-        .intro-section h2 {
-            color: #00a9a5;
-            font-size: 1.4em;
-            margin-bottom: 12px;
-            font-weight: 600;
-        }
-        
-        .intro-section p {
-            color: #555;
-            font-size: 1.05em;
-            line-height: 1.7;
-        }
-        
-        .section {
-            margin-bottom: 35px;
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid #e5e7eb;
-            transition: all 0.3s ease;
-        }
-        
-        .section:hover {
-            box-shadow: 0 4px 12px rgba(0, 169, 165, 0.25);
-            border-color: #00a9a5;
-        }
-        
-        .section-header {
-            background: linear-gradient(135deg, #00a9a5 0%, #0d7377 50%, #ff6b9d 100%);
-            color: white;
-            padding: 22px 30px;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: all 0.3s ease;
-        }
-        
-        .section-header:hover {
-            background: linear-gradient(135deg, #00bfba 0%, #108084 50%, #ff85b0 100%);
-        }
-        
-        .section-header h2 {
-            font-size: 1.3em;
-            font-weight: 600;
-            letter-spacing: -0.3px;
-        }
-        
-        .collapse-icon {
-            font-size: 1.5em;
-            transition: transform 0.3s ease;
-            font-weight: 300;
-        }
-        
-        .section-header.collapsed .collapse-icon {
-            transform: rotate(-90deg);
-        }
-        
-        .section-content {
-            padding: 30px;
-            background: white;
-            max-height: 5000px;
-            overflow: hidden;
-            transition: max-height 0.3s ease-out, padding 0.3s;
-        }
-        
-        .section-content.collapsed {
-            max-height: 0;
-            padding: 0 30px;
-        }
-        
-        .values-section h3 {
-            background: linear-gradient(135deg, #00a9a5, #ff6b9d);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-size: 1.15em;
-            margin: 25px 0 15px 0;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        
-        .values-section h3:first-child {
-            margin-top: 0;
-        }
-        
-        .values-list {
-            list-style: none;
-            padding: 0;
-        }
-        
-        .values-list li {
-            margin-bottom: 14px;
-            padding-left: 30px;
-            position: relative;
-            line-height: 1.65;
-            color: #374151;
-            font-size: 0.98em;
-        }
-        
-        .values-list li:before {
-            content: "→";
-            position: absolute;
-            left: 0;
-            color: #00a9a5;
-            font-weight: bold;
-            font-size: 1.2em;
-        }
-        
-        .responsibility-item {
-            margin-bottom: 12px;
-            padding: 16px 20px;
-            background: #f9fafb;
-            border-radius: 8px;
-            transition: all 0.2s ease;
-            border-left: 3px solid transparent;
-        }
-        
-        .responsibility-item:hover {
-            background: linear-gradient(135deg, rgba(0, 169, 165, 0.05) 0%, rgba(255, 107, 157, 0.05) 100%);
-            border-left-color: #ff6b9d;
-            transform: translateX(4px);
-            box-shadow: 0 2px 8px rgba(0, 169, 165, 0.15);
-        }
-        
-        .item-wrapper {
-            display: flex;
-            align-items: flex-start;
-        }
-        
-        .bullet {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            margin-right: 14px;
-            margin-top: 7px;
-            flex-shrink: 0;
-            background: linear-gradient(135deg, #00a9a5, #ff6b9d);
-        }
-        
-        .item-label {
-            flex: 1;
-            line-height: 1.6;
-            color: #374151;
-            font-size: 0.98em;
-        }
-        
-        .item-label strong {
-            color: #1f2937;
-            font-weight: 600;
-        }
-        
-        @media print {
-            body {
-                background: white;
-                padding: 0;
-            }
-            .section-content {
-                max-height: none !important;
-                padding: 30px !important;
-            }
-            .section {
-                page-break-inside: avoid;
-            }
-            .section-header {
-                background: #00a9a5 !important;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .content {
-                padding: 30px 25px;
-            }
-            .header {
-                padding: 40px 30px;
-            }
-            .header h1 {
-                font-size: 2em;
-            }
-        }
-.breadcrumb {
-    background: white;
-    padding: 16px 24px;
-    border-radius: 12px;
-    margin-bottom: 20px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    font-size: 0.95em;
-    position: sticky;
-    top: 12px;
-    z-index: 100;
-}
-
-.breadcrumb a {
-    color: #00a9a5;
-    text-decoration: none;
-    font-weight: 500;
-    transition: all 0.2s ease;
-}
-
-.breadcrumb a:hover {
-    color: #ff6b9d;
-}
-
-.breadcrumb-separator {
-    color: #cbd5e1;
-}
-
-.breadcrumb-current {
-    color: #64748b;
-    font-weight: 600;
-}
+        .breadcrumb { background: white; padding: 16px 24px; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); display: flex; align-items: center; gap: 12px; font-size: 0.95em; position: sticky; top: 12px; z-index: 100; }
+        .breadcrumb a { color: #00a9a5; text-decoration: none; font-weight: 500; transition: all 0.2s ease; }
+        .breadcrumb a:hover { color: #ff6b9d; }
+        .breadcrumb-separator { color: #cbd5e1; }
+        .breadcrumb-current { color: #64748b; font-weight: 600; }
     </style>
 </head>
 <body>
@@ -302,7 +62,6 @@
                 <div class="subtitle">Department Responsibilities & Collaboration</div>
             </div>
         </div>
-        
         <div class="content">
             <div class="intro-section">
                 <h2>About Finance</h2>
@@ -315,28 +74,25 @@
                     <h2>Our Team Values in Action</h2>
                     <span class="collapse-icon">▼</span>
                 </div>
-                <div class="section-content values-section collapsed">
+                <div class="section-content collapsed values-section">
                     <h3>Ignite Growth</h3>
                     <ul class="values-list">
                         <li>We continuously improve financial and operational processes based on feedback from departments and stakeholders</li>
                         <li>We share best practices in finance, systems, and process management to help the whole organisation make better decisions</li>
                         <li>We challenge ourselves to find more efficient ways to manage budgets, forecasts, and systems—not just rely on "how we've always done it"</li>
                     </ul>
-
                     <h3>Empower Through Innovation</h3>
                     <ul class="values-list">
                         <li>We take time to understand what departments really need before implementing new systems, tools, or policies</li>
                         <li>We look for practical solutions—financial and operational—that work for everyone, not just what looks good in theory</li>
                         <li>When a process or tool isn't working, we're willing to change course and try a different approach</li>
                     </ul>
-
                     <h3>Always Go Beyond</h3>
                     <ul class="values-list">
                         <li>We consider the impact on departments when making decisions about budgets, systems, and policies</li>
                         <li>We respond quickly to queries and requests, knowing that delays impact business decisions</li>
                         <li>We focus our energy on insights and improvements that genuinely help the business grow and succeed</li>
                     </ul>
-
                     <h3>Trust Starts With Us</h3>
                     <ul class="values-list">
                         <li>When we see potential issues—financial, system-related, or process gaps—we flag them early rather than waiting</li>
@@ -344,7 +100,6 @@
                         <li>When we commit to a deadline for reports, approvals, or implementations, we do everything we can to follow through</li>
                         <li>We own our mistakes and focus on fixing them rather than making excuses</li>
                     </ul>
-
                     <h3>Win Together</h3>
                     <ul class="values-list">
                         <li>We value input from all departments when planning budgets or implementing tools—Finance brings expertise, departments bring business knowledge</li>
@@ -361,75 +116,16 @@
                     <span class="collapse-icon">▼</span>
                 </div>
                 <div class="section-content collapsed">
-                    <div class="responsibility-item">
-                        <div class="item-wrapper">
-                            <div class="bullet"></div>
-                            <div class="item-label">Managing company financial planning and budgeting</div>
-                        </div>
-                    </div>
-
-                    <div class="responsibility-item">
-                        <div class="item-wrapper">
-                            <div class="bullet"></div>
-                            <div class="item-label">Financial reporting and analysis</div>
-                        </div>
-                    </div>
-
-                    <div class="responsibility-item">
-                        <div class="item-wrapper">
-                            <div class="bullet"></div>
-                            <div class="item-label">Accounts payable and accounts receivable</div>
-                        </div>
-                    </div>
-
-                    <div class="responsibility-item">
-                        <div class="item-wrapper">
-                            <div class="bullet"></div>
-                            <div class="item-label">Processing internal payroll for S4Labour employees</div>
-                        </div>
-                    </div>
-
-                    <div class="responsibility-item">
-                        <div class="item-wrapper">
-                            <div class="bullet"></div>
-                            <div class="item-label">Revenue recognition and billing management</div>
-                        </div>
-                    </div>
-
-                    <div class="responsibility-item">
-                        <div class="item-wrapper">
-                            <div class="bullet"></div>
-                            <div class="item-label">Financial forecasting and modelling</div>
-                        </div>
-                    </div>
-
-                    <div class="responsibility-item">
-                        <div class="item-wrapper">
-                            <div class="bullet"></div>
-                            <div class="item-label">Cost management and budget oversight</div>
-                        </div>
-                    </div>
-
-                    <div class="responsibility-item">
-                        <div class="item-wrapper">
-                            <div class="bullet"></div>
-                            <div class="item-label">Contract and pricing approvals</div>
-                        </div>
-                    </div>
-
-                    <div class="responsibility-item">
-                        <div class="item-wrapper">
-                            <div class="bullet"></div>
-                            <div class="item-label">Compliance with financial regulations and tax requirements</div>
-                        </div>
-                    </div>
-
-                    <div class="responsibility-item">
-                        <div class="item-wrapper">
-                            <div class="bullet"></div>
-                            <div class="item-label">Supporting strategic business decisions with financial insights</div>
-                        </div>
-                    </div>
+                    <div class="responsibility-item"><div class="item-wrapper"><div class="bullet"></div><div class="item-label">Managing company financial planning and budgeting</div></div></div>
+                    <div class="responsibility-item"><div class="item-wrapper"><div class="bullet"></div><div class="item-label">Financial reporting and analysis</div></div></div>
+                    <div class="responsibility-item"><div class="item-wrapper"><div class="bullet"></div><div class="item-label">Accounts payable and accounts receivable</div></div></div>
+                    <div class="responsibility-item"><div class="item-wrapper"><div class="bullet"></div><div class="item-label">Processing internal payroll for S4Labour employees</div></div></div>
+                    <div class="responsibility-item"><div class="item-wrapper"><div class="bullet"></div><div class="item-label">Revenue recognition and billing management</div></div></div>
+                    <div class="responsibility-item"><div class="item-wrapper"><div class="bullet"></div><div class="item-label">Financial forecasting and modelling</div></div></div>
+                    <div class="responsibility-item"><div class="item-wrapper"><div class="bullet"></div><div class="item-label">Cost management and budget oversight</div></div></div>
+                    <div class="responsibility-item"><div class="item-wrapper"><div class="bullet"></div><div class="item-label">Contract and pricing approvals</div></div></div>
+                    <div class="responsibility-item"><div class="item-wrapper"><div class="bullet"></div><div class="item-label">Compliance with financial regulations and tax requirements</div></div></div>
+                    <div class="responsibility-item"><div class="item-wrapper"><div class="bullet"></div><div class="item-label">Supporting strategic business decisions with financial insights</div></div></div>
                 </div>
             </div>
 
@@ -439,40 +135,11 @@
                     <span class="collapse-icon">▼</span>
                 </div>
                 <div class="section-content collapsed">
-                    <div class="responsibility-item">
-                        <div class="item-wrapper">
-                            <div class="bullet"></div>
-                            <div class="item-label">Financial reporting standards and accounting policies</div>
-                        </div>
-                    </div>
-
-                    <div class="responsibility-item">
-                        <div class="item-wrapper">
-                            <div class="bullet"></div>
-                            <div class="item-label">Budget approval processes and spending controls</div>
-                        </div>
-                    </div>
-
-                    <div class="responsibility-item">
-                        <div class="item-wrapper">
-                            <div class="bullet"></div>
-                            <div class="item-label">Payment terms and credit policies</div>
-                        </div>
-                    </div>
-
-                    <div class="responsibility-item">
-                        <div class="item-wrapper">
-                            <div class="bullet"></div>
-                            <div class="item-label">Financial systems and tools selection</div>
-                        </div>
-                    </div>
-
-                    <div class="responsibility-item">
-                        <div class="item-wrapper">
-                            <div class="bullet"></div>
-                            <div class="item-label">Internal financial controls and audit procedures</div>
-                        </div>
-                    </div>
+                    <div class="responsibility-item"><div class="item-wrapper"><div class="bullet"></div><div class="item-label">Financial reporting standards and accounting policies</div></div></div>
+                    <div class="responsibility-item"><div class="item-wrapper"><div class="bullet"></div><div class="item-label">Budget approval processes and spending controls</div></div></div>
+                    <div class="responsibility-item"><div class="item-wrapper"><div class="bullet"></div><div class="item-label">Payment terms and credit policies</div></div></div>
+                    <div class="responsibility-item"><div class="item-wrapper"><div class="bullet"></div><div class="item-label">Financial systems and tools selection</div></div></div>
+                    <div class="responsibility-item"><div class="item-wrapper"><div class="bullet"></div><div class="item-label">Internal financial controls and audit procedures</div></div></div>
                 </div>
             </div>
 
@@ -482,40 +149,11 @@
                     <span class="collapse-icon">▼</span>
                 </div>
                 <div class="section-content collapsed">
-                    <div class="responsibility-item">
-                        <div class="item-wrapper">
-                            <div class="bullet"></div>
-                            <div class="item-label">Company budget allocation across departments <em>(with all departments, Executive team)</em></div>
-                        </div>
-                    </div>
-
-                    <div class="responsibility-item">
-                        <div class="item-wrapper">
-                            <div class="bullet"></div>
-                            <div class="item-label">Pricing strategy for products and services <em>(with Sales, Product)</em></div>
-                        </div>
-                    </div>
-
-                    <div class="responsibility-item">
-                        <div class="item-wrapper">
-                            <div class="bullet"></div>
-                            <div class="item-label">Compensation structures and salary bands <em>(with HR)</em></div>
-                        </div>
-                    </div>
-
-                    <div class="responsibility-item">
-                        <div class="item-wrapper">
-                            <div class="bullet"></div>
-                            <div class="item-label">Major infrastructure or technology investments <em>(with Engineering, Infrastructure, Product)</em></div>
-                        </div>
-                    </div>
-
-                    <div class="responsibility-item">
-                        <div class="item-wrapper">
-                            <div class="bullet"></div>
-                            <div class="item-label">Contract terms with financial implications <em>(with Sales, Professional Services)</em></div>
-                        </div>
-                    </div>
+                    <div class="responsibility-item"><div class="item-wrapper"><div class="bullet"></div><div class="item-label">Company budget allocation across departments <em>(with all departments, Executive team)</em></div></div></div>
+                    <div class="responsibility-item"><div class="item-wrapper"><div class="bullet"></div><div class="item-label">Pricing strategy for products and services <em>(with Sales, Product)</em></div></div></div>
+                    <div class="responsibility-item"><div class="item-wrapper"><div class="bullet"></div><div class="item-label">Compensation structures and salary bands <em>(with HR)</em></div></div></div>
+                    <div class="responsibility-item"><div class="item-wrapper"><div class="bullet"></div><div class="item-label">Major infrastructure or technology investments <em>(with Engineering, Infrastructure, Product)</em></div></div></div>
+                    <div class="responsibility-item"><div class="item-wrapper"><div class="bullet"></div><div class="item-label">Contract terms with financial implications <em>(with Sales, Professional Services)</em></div></div></div>
                 </div>
             </div>
 
@@ -525,47 +163,12 @@
                     <span class="collapse-icon">▼</span>
                 </div>
                 <div class="section-content collapsed">
-                    <div class="responsibility-item">
-                        <div class="item-wrapper">
-                            <div class="bullet"></div>
-                            <div class="item-label"><strong>Sales:</strong> Deal information, contract values, and revenue forecasts</div>
-                        </div>
-                    </div>
-
-                    <div class="responsibility-item">
-                        <div class="item-wrapper">
-                            <div class="bullet"></div>
-                            <div class="item-label"><strong>Payroll:</strong> Client payroll service revenue and billing data</div>
-                        </div>
-                    </div>
-
-                    <div class="responsibility-item">
-                        <div class="item-wrapper">
-                            <div class="bullet"></div>
-                            <div class="item-label"><strong>Customer Success:</strong> Renewal forecasts and churn risk indicators</div>
-                        </div>
-                    </div>
-
-                    <div class="responsibility-item">
-                        <div class="item-wrapper">
-                            <div class="bullet"></div>
-                            <div class="item-label"><strong>HR:</strong> Employee headcount data and compensation information</div>
-                        </div>
-                    </div>
-
-                    <div class="responsibility-item">
-                        <div class="item-wrapper">
-                            <div class="bullet"></div>
-                            <div class="item-label"><strong>All Departments:</strong> Budget requests, spending forecasts, and resource needs</div>
-                        </div>
-                    </div>
-
-                    <div class="responsibility-item">
-                        <div class="item-wrapper">
-                            <div class="bullet"></div>
-                            <div class="item-label"><strong>Product:</strong> Product development costs and ROI projections</div>
-                        </div>
-                    </div>
+                    <div class="responsibility-item"><div class="item-wrapper"><div class="bullet"></div><div class="item-label"><strong>Sales:</strong> Deal information, contract values, and revenue forecasts</div></div></div>
+                    <div class="responsibility-item"><div class="item-wrapper"><div class="bullet"></div><div class="item-label"><strong>Payroll:</strong> Client payroll service revenue and billing data</div></div></div>
+                    <div class="responsibility-item"><div class="item-wrapper"><div class="bullet"></div><div class="item-label"><strong>Customer Success:</strong> Renewal forecasts and churn risk indicators</div></div></div>
+                    <div class="responsibility-item"><div class="item-wrapper"><div class="bullet"></div><div class="item-label"><strong>HR:</strong> Employee headcount data and compensation information</div></div></div>
+                    <div class="responsibility-item"><div class="item-wrapper"><div class="bullet"></div><div class="item-label"><strong>All Departments:</strong> Budget requests, spending forecasts, and resource needs</div></div></div>
+                    <div class="responsibility-item"><div class="item-wrapper"><div class="bullet"></div><div class="item-label"><strong>Product:</strong> Product development costs and ROI projections</div></div></div>
                 </div>
             </div>
 
@@ -575,54 +178,13 @@
                     <span class="collapse-icon">▼</span>
                 </div>
                 <div class="section-content collapsed">
-                    <div class="responsibility-item">
-                        <div class="item-wrapper">
-                            <div class="bullet"></div>
-                            <div class="item-label"><strong>All Departments:</strong> Budget approvals, financial guidance, and spending authority</div>
-                        </div>
-                    </div>
-
-                    <div class="responsibility-item">
-                        <div class="item-wrapper">
-                            <div class="bullet"></div>
-                            <div class="item-label"><strong>Sales:</strong> Pricing approvals, contract terms guidance, and commission calculations</div>
-                        </div>
-                    </div>
-
-                    <div class="responsibility-item">
-                        <div class="item-wrapper">
-                            <div class="bullet"></div>
-                            <div class="item-label"><strong>HR:</strong> Internal payroll processing for S4Labour employees and compensation guidelines</div>
-                        </div>
-                    </div>
-
-                    <div class="responsibility-item">
-                        <div class="item-wrapper">
-                            <div class="bullet"></div>
-                            <div class="item-label"><strong>Marketing:</strong> Budget allocation for campaigns and ROI tracking requirements</div>
-                        </div>
-                    </div>
-
-                    <div class="responsibility-item">
-                        <div class="item-wrapper">
-                            <div class="bullet"></div>
-                            <div class="item-label"><strong>Product:</strong> Development budget and feature investment decisions</div>
-                        </div>
-                    </div>
-
-                    <div class="responsibility-item">
-                        <div class="item-wrapper">
-                            <div class="bullet"></div>
-                            <div class="item-label"><strong>Consulting:</strong> Pricing approvals and consulting engagement profitability tracking</div>
-                        </div>
-                    </div>
-
-                    <div class="responsibility-item">
-                        <div class="item-wrapper">
-                            <div class="bullet"></div>
-                            <div class="item-label"><strong>Executive Team:</strong> Financial reports, forecasts, and strategic financial insights</div>
-                        </div>
-                    </div>
+                    <div class="responsibility-item"><div class="item-wrapper"><div class="bullet"></div><div class="item-label"><strong>All Departments:</strong> Budget approvals, financial guidance, and spending authority</div></div></div>
+                    <div class="responsibility-item"><div class="item-wrapper"><div class="bullet"></div><div class="item-label"><strong>Sales:</strong> Pricing approvals, contract terms guidance, and commission calculations</div></div></div>
+                    <div class="responsibility-item"><div class="item-wrapper"><div class="bullet"></div><div class="item-label"><strong>HR:</strong> Internal payroll processing for S4Labour employees and compensation guidelines</div></div></div>
+                    <div class="responsibility-item"><div class="item-wrapper"><div class="bullet"></div><div class="item-label"><strong>Marketing:</strong> Budget allocation for campaigns and ROI tracking requirements</div></div></div>
+                    <div class="responsibility-item"><div class="item-wrapper"><div class="bullet"></div><div class="item-label"><strong>Product:</strong> Development budget and feature investment decisions</div></div></div>
+                    <div class="responsibility-item"><div class="item-wrapper"><div class="bullet"></div><div class="item-label"><strong>Consulting:</strong> Pricing approvals and consulting engagement profitability tracking</div></div></div>
+                    <div class="responsibility-item"><div class="item-wrapper"><div class="bullet"></div><div class="item-label"><strong>Executive Team:</strong> Financial reports, forecasts, and strategic financial insights</div></div></div>
                 </div>
             </div>
 
@@ -632,90 +194,26 @@
                     <span class="collapse-icon">▼</span>
                 </div>
                 <div class="section-content collapsed">
-                    <div class="responsibility-item">
-                        <div class="item-wrapper">
-                            <div class="bullet"></div>
-                            <div class="item-label">Revenue recognition for complex contracts</div>
-                        </div>
-                    </div>
-
-                    <div class="responsibility-item">
-                        <div class="item-wrapper">
-                            <div class="bullet"></div>
-                            <div class="item-label">Client billing ownership</div>
-                        </div>
-                    </div>
-
-                    <div class="responsibility-item">
-                        <div class="item-wrapper">
-                            <div class="bullet"></div>
-                            <div class="item-label">Financial approval thresholds</div>
-                        </div>
-                    </div>
-
-                    <div class="responsibility-item">
-                        <div class="item-wrapper">
-                            <div class="bullet"></div>
-                            <div class="item-label">Cost allocation methodology</div>
-                        </div>
-                    </div>
-
-                    <div class="responsibility-item">
-                        <div class="item-wrapper">
-                            <div class="bullet"></div>
-                            <div class="item-label">Financial forecasting inputs</div>
-                        </div>
-                    </div>
-
-                    <div class="responsibility-item">
-                        <div class="item-wrapper">
-                            <div class="bullet"></div>
-                            <div class="item-label">Both Finance and HR process internal employee payroll</div>
-                        </div>
-                    </div>
-
-                    <div class="responsibility-item">
-                        <div class="item-wrapper">
-                            <div class="bullet"></div>
-                            <div class="item-label">Both Finance and Sales negotiate contract terms</div>
-                        </div>
-                    </div>
-
-                    <div class="responsibility-item">
-                        <div class="item-wrapper">
-                            <div class="bullet"></div>
-                            <div class="item-label">Both Finance and Payroll handle client billing</div>
-                        </div>
-                    </div>
-
-                    <div class="responsibility-item">
-                        <div class="item-wrapper">
-                            <div class="bullet"></div>
-                            <div class="item-label">Both Finance and all departments manage budgets</div>
-                        </div>
-                    </div>
-
-                    <div class="responsibility-item">
-                        <div class="item-wrapper">
-                            <div class="bullet"></div>
-                            <div class="item-label">Both Finance and Executive team make strategic investment decisions</div>
-                        </div>
-                    </div>
+                    <div class="responsibility-item"><div class="item-wrapper"><div class="bullet"></div><div class="item-label">Revenue recognition for complex contracts</div></div></div>
+                    <div class="responsibility-item"><div class="item-wrapper"><div class="bullet"></div><div class="item-label">Client billing ownership</div></div></div>
+                    <div class="responsibility-item"><div class="item-wrapper"><div class="bullet"></div><div class="item-label">Financial approval thresholds</div></div></div>
+                    <div class="responsibility-item"><div class="item-wrapper"><div class="bullet"></div><div class="item-label">Cost allocation methodology</div></div></div>
+                    <div class="responsibility-item"><div class="item-wrapper"><div class="bullet"></div><div class="item-label">Financial forecasting inputs</div></div></div>
+                    <div class="responsibility-item"><div class="item-wrapper"><div class="bullet"></div><div class="item-label">Both Finance and HR process internal employee payroll</div></div></div>
+                    <div class="responsibility-item"><div class="item-wrapper"><div class="bullet"></div><div class="item-label">Both Finance and Sales negotiate contract terms</div></div></div>
+                    <div class="responsibility-item"><div class="item-wrapper"><div class="bullet"></div><div class="item-label">Both Finance and Payroll handle client billing</div></div></div>
+                    <div class="responsibility-item"><div class="item-wrapper"><div class="bullet"></div><div class="item-label">Both Finance and all departments manage budgets</div></div></div>
+                    <div class="responsibility-item"><div class="item-wrapper"><div class="bullet"></div><div class="item-label">Both Finance and Executive team make strategic investment decisions</div></div></div>
                 </div>
             </div>
         </div>
     </div>
-
     <script>
         function toggleSection(header) {
             const content = header.nextElementSibling;
             content.classList.toggle('collapsed');
             header.classList.toggle('collapsed');
         }
-
-        window.onload = function() {
-            // Keep all sections collapsed initially for professional appearance
-        };
     </script>
 </body>
 </html>
