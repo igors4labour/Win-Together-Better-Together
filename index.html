@@ -363,7 +363,7 @@
             </div>
         </div>
         
-        <div class="search-section">
+         <div class="search-section">
             <div class="search-container">
                 <span class="search-icon">🔍</span>
                 <input type="text" class="search-input" id="searchInput" placeholder="What do you need help with?" autocomplete="off">
@@ -375,6 +375,173 @@
                 <div id="resultsList"></div>
             </div>
         </div>
+        
+        <div class="quick-links">
+            <h2>Explore</h2>
+            
+            <a href="team-connections.html" class="featured-link">
+                <h3>🔗 See How Teams Connect</h3>
+                <p>Interactive visualisation showing how all 12 departments collaborate and support each other.</p>
+            </a>
+            
+            <div class="departments-grid">
+                <a href="consulting.html" class="dept-link" style="--dept-color: #f7941d"><span>Consulting</span></a>
+                <a href="customer-success.html" class="dept-link" style="--dept-color: #00a9a5"><span>Customer Success</span></a>
+                <a href="engineering.html" class="dept-link" style="--dept-color: #1e3a5f"><span>Engineering</span></a>
+                <a href="finance.html" class="dept-link" style="--dept-color: #7c3aed"><span>Finance</span></a>
+                <a href="hr.html" class="dept-link" style="--dept-color: #e91388"><span>HR</span></a>
+                <a href="infrastructure.html" class="dept-link" style="--dept-color: #1e3a5f"><span>Infrastructure</span></a>
+                <a href="marketing.html" class="dept-link" style="--dept-color: #e91388"><span>Marketing</span></a>
+                <a href="payroll.html" class="dept-link" style="--dept-color: #7c3aed"><span>Payroll</span></a>
+                <a href="product.html" class="dept-link" style="--dept-color: #00a9a5"><span>Product</span></a>
+                <a href="professional-services.html" class="dept-link" style="--dept-color: #f7941d"><span>Prof. Services</span></a>
+                <a href="sales.html" class="dept-link" style="--dept-color: #e91388"><span>Sales</span></a>
+                <a href="testing.html" class="dept-link" style="--dept-color: #1e3a5f"><span>Testing</span></a>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>© 2024 S4Labour - Culture Club Initiative</p>
+        </div>
+    </div>
+
+<script>
+var searchData = [
+    // Consulting
+    { dept: 'Consulting', color: '#f7941d', link: 'consulting.html', text: 'ROI calculations and labour cost saving examples for prospects' },
+    { dept: 'Consulting', color: '#f7941d', link: 'consulting.html', text: 'Workforce optimisation and operational excellence advice' },
+    { dept: 'Consulting', color: '#f7941d', link: 'consulting.html', text: 'Best practice recommendations for client accounts' },
+    { dept: 'Consulting', color: '#f7941d', link: 'consulting.html', text: 'Thought leadership content and customer success metrics' },
+    
+    // Customer Success
+    { dept: 'Customer Success', color: '#00a9a5', link: 'customer-success.html', text: 'Client relationships and ongoing support' },
+    { dept: 'Customer Success', color: '#00a9a5', link: 'customer-success.html', text: 'Feature requests from clients and usage feedback' },
+    { dept: 'Customer Success', color: '#00a9a5', link: 'customer-success.html', text: 'Bug reports with impact assessment on clients' },
+    { dept: 'Customer Success', color: '#00a9a5', link: 'customer-success.html', text: 'Renewal opportunities and expansion leads' },
+    { dept: 'Customer Success', color: '#00a9a5', link: 'customer-success.html', text: 'Customer testimonials and case study interviews' },
+    { dept: 'Customer Success', color: '#00a9a5', link: 'customer-success.html', text: 'Churn risk indicators and retention projections' },
+    
+    // Engineering
+    { dept: 'Engineering', color: '#1e3a5f', link: 'engineering.html', text: 'Software development and system maintenance' },
+    { dept: 'Engineering', color: '#1e3a5f', link: 'engineering.html', text: 'Bug fixes and live issue resolution' },
+    { dept: 'Engineering', color: '#1e3a5f', link: 'engineering.html', text: 'Technical feasibility assessments for new features' },
+    { dept: 'Engineering', color: '#1e3a5f', link: 'engineering.html', text: 'Demo environment maintenance and stability' },
+    { dept: 'Engineering', color: '#1e3a5f', link: 'engineering.html', text: 'Payroll-impacting bugs and data flow reliability' },
+    { dept: 'Engineering', color: '#1e3a5f', link: 'engineering.html', text: 'Code deployment and feature validation' },
+    { dept: 'Engineering', color: '#1e3a5f', link: 'engineering.html', text: 'Second-line support (technical debugging, system issues, bug fixes)' },
+    { dept: 'Engineering', color: '#1e3a5f', link: 'engineering.html', text: 'Integration development, setup, and technical troubleshooting' },
+    { dept: 'Engineering', color: '#1e3a5f', link: 'engineering.html', text: 'Data mapping and API management' },    
+    
+    // Finance
+    { dept: 'Finance', color: '#7c3aed', link: 'finance.html', text: 'Pricing approvals and contract terms guidance' },
+    { dept: 'Finance', color: '#7c3aed', link: 'finance.html', text: 'Sales commissions calculation' },
+    { dept: 'Finance', color: '#7c3aed', link: 'finance.html', text: 'Campaign budget allocation and ROI tracking' },
+    { dept: 'Finance', color: '#7c3aed', link: 'finance.html', text: 'Development budget and feature investment decisions' },
+    { dept: 'Finance', color: '#7c3aed', link: 'finance.html', text: 'Internal payroll for S4Labour employees' },
+    { dept: 'Finance', color: '#7c3aed', link: 'finance.html', text: 'Consulting engagement pricing and profitability' },
+    
+    // HR
+    { dept: 'HR', color: '#e91388', link: 'hr.html', text: 'People, culture, and organisational development' },
+    { dept: 'HR', color: '#e91388', link: 'hr.html', text: 'Payroll processing and benefits administration' },
+    { dept: 'HR', color: '#e91388', link: 'hr.html', text: 'Compensation planning and guidelines' },
+    { dept: 'HR', color: '#e91388', link: 'hr.html', text: 'Employee technology access and data security' },
+    { dept: 'HR', color: '#e91388', link: 'hr.html', text: 'Recruitment marketing and employer brand' },
+    
+    // Infrastructure
+    { dept: 'Infrastructure', color: '#1e3a5f', link: 'infrastructure.html', text: 'Development environments and deployment pipelines' },
+    { dept: 'Infrastructure', color: '#1e3a5f', link: 'infrastructure.html', text: 'Test environment provisioning and refresh' },
+    { dept: 'Infrastructure', color: '#1e3a5f', link: 'infrastructure.html', text: 'Client environment setup and database provisioning' },
+    { dept: 'Infrastructure', color: '#1e3a5f', link: 'infrastructure.html', text: 'System uptime during payroll processing windows' },
+    { dept: 'Infrastructure', color: '#1e3a5f', link: 'infrastructure.html', text: 's4labour.com website hosting and performance' },
+    { dept: 'Infrastructure', color: '#1e3a5f', link: 'infrastructure.html', text: 'Demo environment availability for sales' },
+    { dept: 'Infrastructure', color: '#1e3a5f', link: 'infrastructure.html', text: 'Pendo and analytics tools infrastructure' },
+    
+    // Marketing
+    { dept: 'Marketing', color: '#e91388', link: 'marketing.html', text: 'Lead generation from campaigns and events' },
+    { dept: 'Marketing', color: '#e91388', link: 'marketing.html', text: 'Competitive intelligence and market feedback' },
+    { dept: 'Marketing', color: '#e91388', link: 'marketing.html', text: 'Website traffic forecasts and lead volume' },
+    { dept: 'Marketing', color: '#e91388', link: 'marketing.html', text: 'Thought leadership content and client presentations' },
+    { dept: 'Marketing', color: '#e91388', link: 'marketing.html', text: 'Recruitment marketing materials' },
+    
+    // Payroll
+    { dept: 'Payroll', color: '#7c3aed', link: 'payroll.html', text: 'Payroll processing and status updates' },
+    { dept: 'Payroll', color: '#7c3aed', link: 'payroll.html', text: 'Data quality issues affecting payroll accuracy' },
+    { dept: 'Payroll', color: '#7c3aed', link: 'payroll.html', text: 'Payroll service revenue and client billing' },
+    { dept: 'Payroll', color: '#7c3aed', link: 'payroll.html', text: 'Payroll service capabilities for prospects' },
+    
+    // Product
+    { dept: 'Product', color: '#00a9a5', link: 'product.html', text: 'Feature specifications and acceptance criteria' },
+    { dept: 'Product', color: '#00a9a5', link: 'product.html', text: 'Product roadmap and feature capabilities' },
+    { dept: 'Product', color: '#00a9a5', link: 'product.html', text: 'System documentation and configuration guidance' },
+    { dept: 'Product', color: '#00a9a5', link: 'product.html', text: 'Feature release schedules and roadmap transparency' },
+    { dept: 'Product', color: '#00a9a5', link: 'product.html', text: 'UI/UX assets and technical accuracy reviews' },
+    { dept: 'Product', color: '#00a9a5', link: 'product.html', text: 'First-line support (customer queries, basic troubleshooting, ticket management)' },
+    { dept: 'Product', color: '#00a9a5', link: 'product.html', text: 'Support processes and knowledge base' },
+    { dept: 'Product', color: '#00a9a5', link: 'product.html', text: 'Integration contracts, vendor relationships, and escalation point' },
+    { dept: 'Product', color: '#00a9a5', link: 'product.html', text: 'Integration requirements and roadmap' },
+    
+    // Professional Services
+    { dept: 'Professional Services', color: '#f7941d', link: 'professional-services.html', text: 'Client onboarding and implementation' },
+    { dept: 'Professional Services', color: '#f7941d', link: 'professional-services.html', text: 'New client handover with documentation' },
+    { dept: 'Professional Services', color: '#f7941d', link: 'professional-services.html', text: 'Client data setup for payroll processing' },
+    { dept: 'Professional Services', color: '#f7941d', link: 'professional-services.html', text: 'Implementation feedback and success stories' },
+    { dept: 'Professional Services', color: '#f7941d', link: 'professional-services.html', text: 'User feedback on system usability' },
+    
+    // Sales
+    { dept: 'Sales', color: '#e91388', link: 'sales.html', text: 'New business development and deals' },
+    { dept: 'Sales', color: '#e91388', link: 'sales.html', text: 'Contract handover with client expectations' },
+    { dept: 'Sales', color: '#e91388', link: 'sales.html', text: 'Lead quality feedback and competitive insights' },
+    { dept: 'Sales', color: '#e91388', link: 'sales.html', text: 'Customer feature requests and market demand' },
+    { dept: 'Sales', color: '#e91388', link: 'sales.html', text: 'Revenue forecasts and pipeline reports' },
+    { dept: 'Sales', color: '#e91388', link: 'sales.html', text: 'Consulting engagement referrals' },
+    
+    // Testing
+    { dept: 'Testing', color: '#1e3a5f', link: 'testing.html', text: 'Quality assurance and system validation' },
+    { dept: 'Testing', color: '#1e3a5f', link: 'testing.html', text: 'Bug identification with reproduction steps' },
+    { dept: 'Testing', color: '#1e3a5f', link: 'testing.html', text: 'Usability insights and feature verification' },
+    { dept: 'Testing', color: '#1e3a5f', link: 'testing.html', text: 'Application vs infrastructure issue diagnosis' }
+];
+
+var searchInput = document.getElementById('searchInput');
+var resultsContainer = document.getElementById('resultsContainer');
+var resultsTitle = document.getElementById('resultsTitle');
+var resultsList = document.getElementById('resultsList');
+
+searchInput.addEventListener('input', function() {
+    var query = this.value.trim().toLowerCase();
+    
+    if (query.length < 2) {
+        resultsContainer.classList.remove('active');
+        return;
+    }
+    
+    var matches = searchData.filter(function(item) {
+        return item.text.toLowerCase().includes(query) || 
+               item.dept.toLowerCase().includes(query);
+    });
+    
+    resultsContainer.classList.add('active');
+    
+    if (matches.length === 0) {
+        resultsTitle.textContent = '';
+        resultsList.innerHTML = '<div class="no-results"><div class="no-results-icon">🤔</div><p>No matches found. Try different keywords or browse the departments below.</p></div>';
+        return;
+    }
+    
+    resultsTitle.textContent = matches.length + ' result' + (matches.length !== 1 ? 's' : '') + ' found';
+    
+    var html = '';
+    matches.forEach(function(item) {
+        var highlighted = item.text.replace(new RegExp('(' + query + ')', 'gi'), '<mark>$1</mark>');
+        html += '<div class="result-item" style="--dept-color: ' + item.color + '" onclick="window.location.href=\'' + item.link + '\'">';
+        html += '<div class="result-dept">' + item.dept + '</div>';
+        html += '<div class="result-text">' + highlighted + '</div>';
+        html += '</div>';
+    });
+    
+    resultsList.innerHTML = html;
+});
+</script>
         
         <a href="team-connections.html" class="featured-link">
             <h3>🔗 Working Together - Better Together</h3>
