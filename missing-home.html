@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Missing a Home - Working Together at S4</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #f5f7fa;
+            min-height: 100vh;
+            padding: 40px 20px;
+            line-height: 1.6;
+        }
+        
+        .container { max-width: 900px; margin: 0 auto; }
+        
+        .breadcrumb {
+            background: white;
+            padding: 16px 24px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.95em;
+            position: sticky;
+            top: 12px;
+            z-index: 100;
+        }
+        
+        .breadcrumb a {
+            color: #00a9a5;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+        
+        .breadcrumb a:hover {
+            color: #ff6b9d;
+        }
+        
+        .breadcrumb-separator {
+            color: #cbd5e1;
+        }
+        
+        .breadcrumb-current {
+            color: #64748b;
+            font-weight: 600;
+        }
+        
+        .header-card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.07), 0 10px 30px rgba(0,0,0,0.08);
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 50%, #b45309 100%);
+            color: white;
+            padding: 50px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.4;
+        }
+        
+        .header-icon {
+            font-size: 3em;
+            margin-bottom: 16px;
+            position: relative;
+        }
+        
+        .header h1 {
+            font-size: 2.2em;
+            font-weight: 700;
+            margin-bottom: 16px;
+            position: relative;
+        }
+        
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.95;
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .content {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.07);
+            margin-bottom: 30px;
+        }
+        
+        .intro {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .intro p {
+            color: #555;
+            font-size: 1.05em;
+            max-width: 650px;
+            margin: 0 auto;
+        }
+        
+        .orphan-item {
+            background: #fffbeb;
+            border: 1px solid #fde68a;
+            border-left: 5px solid #f59e0b;
+            border-radius: 12px;
+            padding: 28px;
+            margin-bottom: 24px;
+            position: relative;
+        }
+        
+        .orphan-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .orphan-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+        
+        .orphan-icon {
+            font-size: 1.8em;
+        }
+        
+        .orphan-title {
+            font-size: 1.3em;
+            font-weight: 700;
+            color: #92400e;
+        }
+        
+        .orphan-description {
+            color: #78350f;
+            font-size: 1em;
+            line-height: 1.7;
+            margin-bottom: 16px;
+        }
+        
+        .orphan-details {
+            background: rgba(245, 158, 11, 0.1);
+            border-radius: 8px;
+            padding: 16px;
+        }
+        
+        .orphan-details h4 {
+            color: #92400e;
+            font-size: 0.9em;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        
+        .orphan-details ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .orphan-details li {
+            color: #78350f;
+            font-size: 0.95em;
+            padding: 6px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .orphan-details li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #f59e0b;
+            font-weight: bold;
+        }
+        
+        .cta-section {
+            background: linear-gradient(135deg, rgba(0, 169, 165, 0.08) 0%, rgba(255, 107, 157, 0.08) 100%);
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            margin-top: 40px;
+        }
+        
+        .cta-section h3 {
+            color: #00a9a5;
+            font-size: 1.2em;
+            margin-bottom: 12px;
+        }
+        
+        .cta-section p {
+            color: #555;
+            font-size: 0.95em;
+            margin-bottom: 20px;
+        }
+        
+        .cta-section a {
+            display: inline-block;
+            background: linear-gradient(135deg, #00a9a5 0%, #0d7377 100%);
+            color: white;
+            text-decoration: none;
+            padding: 12px 28px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .cta-section a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 169, 165, 0.3);
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 30px;
+            color: #6b7280;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="breadcrumb">
+            <a href="index.html">🏠 Hub</a>
+            <span class="breadcrumb-separator">›</span>
+            <span class="breadcrumb-current">Missing a Home</span>
+        </nav>
+        
+        <div class="header-card">
+            <div class="header">
+                <div class="header-icon">🏠❓</div>
+                <h1>Missing a Home</h1>
+                <p>These functions don't currently sit clearly under any department's responsibilities. Help us find where they belong.</p>
+            </div>
+        </div>
+        
+        <div class="content">
+            <div class="intro">
+                <p>As we mapped out our departmental responsibilities, we noticed some important functions that don't have a clear owner. We're sharing these openly so we can work together to find the right home for each.</p>
+            </div>
+            
+            <div class="orphan-item">
+                <div class="orphan-header">
+                    <span class="orphan-icon">🎧</span>
+                    <span class="orphan-title">Support (1st and 2nd Line)</span>
+                </div>
+                <p class="orphan-description">
+                    First-line and second-line support for customers – handling queries, troubleshooting issues, and escalating where needed. This is a critical function that touches many teams but doesn't have a clearly defined departmental owner.
+                </p>
+                <div class="orphan-details">
+                    <h4>What this typically includes:</h4>
+                    <ul>
+                        <li>Initial customer query handling and triage</li>
+                        <li>Basic troubleshooting and issue resolution</li>
+                        <li>Escalation to appropriate teams (Engineering, Payroll, etc.)</li>
+                        <li>Ticket management and response times</li>
+                        <li>Knowledge base maintenance</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="orphan-item">
+                <div class="orphan-header">
+                    <span class="orphan-icon">🔌</span>
+                    <span class="orphan-title">Integrations (Tills & Time and Attendance)</span>
+                </div>
+                <p class="orphan-description">
+                    Managing integrations with different till systems and Time & Attendance providers. This includes setting up new integrations, maintaining existing ones, and troubleshooting data flow issues.
+                </p>
+                <div class="orphan-details">
+                    <h4>What this typically includes:</h4>
+                    <ul>
+                        <li>Till system integrations (various providers)</li>
+                        <li>Time and Attendance system connections</li>
+                        <li>Data mapping and transformation</li>
+                        <li>Integration troubleshooting and maintenance</li>
+                        <li>New integration setup and configuration</li>
+                        <li>Third-party vendor coordination</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="cta-section">
+                <h3>Know where these should live?</h3>
+                <p>If you have thoughts on which department should own these functions, speak to the Culture Club or your manager.</p>
+                <a href="index.html">← Back to Hub</a>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>© 2024 S4Labour - Culture Club Initiative</p>
+        </div>
+    </div>
+</body>
+</html>
