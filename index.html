@@ -556,14 +556,24 @@ document.getElementById('feedbackForm').addEventListener('submit', function(e) {
     // Create email content
     var subject = encodeURIComponent('Working Together Hub - Change Suggestion from ' + name);
     var body = encodeURIComponent(
-        'Hi Culture Club,\n\n' +
-        'A change has been suggested for the Working Together at S4 hub.\n\n' +
-        '---\n\n' +
-        'FROM: ' + name + '\n' +
-        'DEPARTMENT: ' + dept + '\n\n' +
-        'SUGGESTED CHANGE:\n' + change + '\n\n' +
-        '---\n\n' +
-        'Sent from the Working Together Hub'
+        'Hi Culture Club Team,\n\n' +
+        'A new suggestion has been submitted for the Working Together at S4 hub.\n\n' +
+        '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n' +
+        '👤 SUBMITTED BY\n' +
+        '   ' + name + ' (' + dept + ')\n\n' +
+        '💬 SUGGESTED CHANGE\n' +
+        '   ' + change.replace(/\n/g, '\n   ') + '\n\n' +
+        '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n' +
+        '📅 Submitted: ' + new Date().toLocaleDateString('en-GB', { 
+            weekday: 'long', 
+            year: 'numeric', 
+            month: 'long', 
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit'
+        }) + '\n\n' +
+        '---\n' +
+        'Sent automatically from the Working Together at S4 Hub\n' +
     );
     
     // Open email client
