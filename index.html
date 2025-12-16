@@ -3,22 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Working Together at S4</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
+        @keyframes waveFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             background: #f5f7fa;
             min-height: 100vh;
-            padding: 40px 20px;
+            padding: 40px 20px 80px;
             line-height: 1.6;
+            display: flex;
+            flex-direction: column;
         }
         
-        .container { max-width: 1000px; margin: 0 auto; }
+        .container { max-width: 1000px; margin: 0 auto; flex: 1; }
         
         .header-card {
             background: white;
@@ -29,7 +35,9 @@
         }
         
         .header {
-            background: linear-gradient(135deg, #00a9a5 0%, #0d7377 50%, #ff6b9d 100%);
+            background: linear-gradient(135deg, #00a9a5 0%, #0d7377 25%, #ff6b9d 50%, #0d7377 75%, #00a9a5 100%);
+            background-size: 400% 400%;
+            animation: waveFlow 8s ease infinite;
             color: white;
             padding: 50px;
             text-align: center;
@@ -40,24 +48,16 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-            opacity: 0.4;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.08'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
         }
         
-        .header h1 {
-            font-size: 2.5em;
-            font-weight: 700;
-            margin-bottom: 16px;
+        .header h1 { 
+            font-size: 2.5em; 
+            font-weight: 700; 
+            margin-bottom: 16px; 
             position: relative;
         }
-        
-        .header p {
-            font-size: 1.15em;
-            opacity: 0.95;
-            max-width: 600px;
-            margin: 0 auto;
-            position: relative;
-        }
+        .header p { font-size: 1.15em; opacity: 0.95; max-width: 600px; margin: 0 auto; position: relative; }
         
         .search-section {
             background: white;
@@ -67,20 +67,8 @@
             box-shadow: 0 4px 6px rgba(0,0,0,0.07);
         }
         
-        .search-container {
-            position: relative;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        
-        .search-icon {
-            position: absolute;
-            left: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 1.3em;
-            color: #9ca3af;
-        }
+        .search-container { position: relative; max-width: 600px; margin: 0 auto; }
+        .search-icon { position: absolute; left: 20px; top: 50%; transform: translateY(-50%); font-size: 1.3em; color: #9ca3af; }
         
         .search-input {
             width: 100%;
@@ -92,38 +80,13 @@
             transition: all 0.3s;
         }
         
-        .search-input:focus {
-            border-color: #00a9a5;
-            box-shadow: 0 0 0 4px rgba(0, 169, 165, 0.1);
-        }
+        .search-input:focus { border-color: #00a9a5; box-shadow: 0 0 0 4px rgba(0, 169, 165, 0.1); }
+        .search-input::placeholder { color: #9ca3af; }
+        .search-hint { text-align: center; color: #6b7280; font-size: 0.9em; margin-top: 12px; }
         
-        .search-input::placeholder {
-            color: #9ca3af;
-        }
-        
-        .search-hint {
-            text-align: center;
-            color: #6b7280;
-            font-size: 0.9em;
-            margin-top: 12px;
-        }
-        
-        .results-container {
-            margin-top: 20px;
-            display: none;
-        }
-        
-        .results-container.active {
-            display: block;
-        }
-        
-        .results-title {
-            font-weight: 600;
-            color: #374151;
-            margin-bottom: 16px;
-            padding-bottom: 12px;
-            border-bottom: 1px solid #e5e7eb;
-        }
+        .results-container { margin-top: 20px; display: none; }
+        .results-container.active { display: block; }
+        .results-title { font-weight: 600; color: #374151; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid #e5e7eb; }
         
         .result-item {
             background: #f9fafb;
@@ -135,38 +98,17 @@
             transition: all 0.3s;
         }
         
-        .result-item:hover {
-            background: #f1f5f9;
-            transform: translateX(5px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-        }
-        
-        .result-dept {
-            font-weight: 600;
-            color: var(--dept-color, #00a9a5);
-            font-size: 0.85em;
-            margin-bottom: 4px;
-        }
-        
-        .result-text {
-            color: #374151;
-            font-size: 0.95em;
-        }
-        
-        .no-results {
-            text-align: center;
-            padding: 40px;
-            color: #6b7280;
-        }
-        
-        .no-results-icon {
-            font-size: 3em;
-            margin-bottom: 16px;
-        }
+        .result-item:hover { background: #f1f5f9; transform: translateX(5px); box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+        .result-dept { font-weight: 600; color: var(--dept-color, #00a9a5); font-size: 0.85em; margin-bottom: 4px; }
+        .result-text { color: #374151; font-size: 0.95em; }
+        .no-results { text-align: center; padding: 40px; color: #6b7280; }
+        .no-results-icon { font-size: 3em; margin-bottom: 16px; }
         
         .featured-link {
             display: block;
-            background: linear-gradient(135deg, #00a9a5 0%, #0d7377 50%, #ff6b9d 100%);
+            background: linear-gradient(135deg, #00a9a5 0%, #0d7377 25%, #ff6b9d 50%, #0d7377 75%, #00a9a5 100%);
+            background-size: 400% 400%;
+            animation: waveFlow 8s ease infinite;
             border-radius: 16px;
             padding: 32px;
             margin-bottom: 30px;
@@ -196,30 +138,16 @@
             transition: all 0.3s;
         }
         
-        .featured-link:hover {
-            transform: translateY(-6px) scale(1.02);
-            box-shadow: 0 15px 40px rgba(0, 169, 165, 0.4);
-        }
-        
-        .featured-link:hover::after {
-            right: 24px;
-            opacity: 1;
-        }
-        
-        .featured-link h3 {
-            color: white;
-            font-size: 1.5em;
-            margin-bottom: 10px;
-            position: relative;
+        .featured-link:hover { transform: translateY(-6px) scale(1.02); box-shadow: 0 15px 40px rgba(0, 169, 165, 0.4); }
+        .featured-link:hover::after { right: 24px; opacity: 1; }
+        .featured-link h3 { 
+            color: white; 
+            font-size: 1.5em; 
+            margin-bottom: 10px; 
+            position: relative; 
             font-weight: 700;
         }
-        
-        .featured-link p {
-            color: rgba(255,255,255,0.9);
-            font-size: 1em;
-            position: relative;
-            max-width: 85%;
-        }
+        .featured-link p { color: rgba(255,255,255,0.9); font-size: 1em; position: relative; max-width: 85%; }
         
         .departments-grid {
             display: grid;
@@ -243,30 +171,186 @@
         .dept-link::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
+            top: 0; left: 0;
+            width: 100%; height: 4px;
             background: linear-gradient(135deg, #00a9a5 0%, #0d7377 50%, #ff6b9d 100%);
         }
         
-        .dept-link:hover {
-            background: white;
-            transform: translateY(-4px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-            border-color: #00a9a5;
-        }
+        .dept-link:hover { background: white; transform: translateY(-4px); box-shadow: 0 8px 20px rgba(0,0,0,0.1); border-color: #00a9a5; }
+        .dept-link span { color: #374151; font-weight: 600; font-size: 0.9em; }
         
-        .dept-link span {
-            color: #374151;
-            font-weight: 600;
-            font-size: 0.9em;
-        }
-        
-        .footer {
-            text-align: center;
-            padding: 30px;
+        .footer { 
+            text-align: center; 
+            padding: 30px 20px; 
             color: #6b7280;
+            margin-top: auto;
+            width: 100%;
+        }
+        
+        /* Feedback Button */
+        .feedback-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #00a9a5 0%, #0d7377 100%);
+            color: white;
+            border: none;
+            padding: 16px 24px;
+            border-radius: 50px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(0, 169, 165, 0.4);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 100;
+        }
+        
+        .feedback-btn:hover {
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 12px 35px rgba(0, 169, 165, 0.5);
+        }
+        
+        .feedback-btn .icon { font-size: 1.3em; }
+        
+        /* Modal Overlay */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .modal-overlay.active { opacity: 1; visibility: visible; }
+        
+        /* Modal */
+        .modal {
+            background: white;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 500px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.3);
+            transform: scale(0.9) translateY(20px);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .modal-overlay.active .modal { transform: scale(1) translateY(0); }
+        
+        .modal-header {
+            background: linear-gradient(135deg, #00a9a5 0%, #0d7377 50%, #ff6b9d 100%);
+            color: white;
+            padding: 28px 30px;
+            position: relative;
+        }
+        
+        .modal-header h2 { font-size: 1.5em; font-weight: 700; margin-bottom: 6px; }
+        .modal-header p { opacity: 0.9; font-size: 0.95em; }
+        
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            font-size: 1.4em;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-close:hover { background: rgba(255,255,255,0.3); transform: rotate(90deg); }
+        
+        .modal-body { padding: 30px; }
+        
+        .form-group { margin-bottom: 20px; }
+        .form-label { display: block; font-weight: 600; color: #374151; margin-bottom: 8px; font-size: 0.95em; }
+        .form-label .required { color: #e91388; }
+        
+        .form-input, .form-select, .form-textarea {
+            width: 100%;
+            padding: 14px 16px;
+            font-size: 1em;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            outline: none;
+            transition: all 0.3s;
+            font-family: inherit;
+        }
+        
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            border-color: #00a9a5;
+            box-shadow: 0 0 0 4px rgba(0, 169, 165, 0.1);
+        }
+        
+        .form-textarea { min-height: 120px; resize: vertical; }
+        
+        .form-select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%239ca3af' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            padding-right: 44px;
+        }
+        
+        .submit-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #00a9a5 0%, #0d7377 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0, 169, 165, 0.4); }
+        .submit-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+        
+        .form-note {
+            text-align: center;
+            color: #6b7280;
+            font-size: 0.85em;
+            margin-top: 16px;
+        }
+        
+        /* Success State */
+        .success-message {
+            text-align: center;
+            padding: 40px 30px;
+            display: none;
+        }
+        
+        .success-message.active { display: block; }
+        .success-icon { font-size: 4em; margin-bottom: 20px; }
+        .success-message h3 { color: #00a9a5; font-size: 1.5em; margin-bottom: 10px; }
+        .success-message p { color: #6b7280; }
+        
+        @media (max-width: 600px) {
+            .feedback-btn span { display: none; }
+            .feedback-btn { padding: 16px; border-radius: 50%; }
         }
     </style>
 </head>
@@ -298,193 +382,204 @@
         </a>
             
         <div class="departments-grid">
-            <a href="consulting.html" class="dept-link" style="--dept-color: #f7941d"><span>Consulting</span></a>
-            <a href="customer-success.html" class="dept-link" style="--dept-color: #00a9a5"><span>Customer Success</span></a>
-            <a href="engineering.html" class="dept-link" style="--dept-color: #3b82f6"><span>Engineering</span></a>
-            <a href="finance.html" class="dept-link" style="--dept-color: #7c3aed"><span>Finance</span></a>
-            <a href="hr.html" class="dept-link" style="--dept-color: #e91388"><span>HR</span></a>
-            <a href="infrastructure.html" class="dept-link" style="--dept-color: #3b82f6"><span>Infrastructure</span></a>
-            <a href="marketing.html" class="dept-link" style="--dept-color: #e91388"><span>Marketing</span></a>
-            <a href="payroll.html" class="dept-link" style="--dept-color: #7c3aed"><span>Payroll</span></a>
-            <a href="product.html" class="dept-link" style="--dept-color: #00a9a5"><span>Product</span></a>
-            <a href="professional-services.html" class="dept-link" style="--dept-color: #f7941d"><span>Prof. Services</span></a>
-            <a href="sales.html" class="dept-link" style="--dept-color: #e91388"><span>Sales</span></a>
-            <a href="testing.html" class="dept-link" style="--dept-color: #3b82f6"><span>Testing</span></a>
+            <a href="consulting.html" class="dept-link"><span>Consulting</span></a>
+            <a href="customer-success.html" class="dept-link"><span>Customer Success</span></a>
+            <a href="engineering.html" class="dept-link"><span>Engineering</span></a>
+            <a href="finance.html" class="dept-link"><span>Finance</span></a>
+            <a href="hr.html" class="dept-link"><span>HR</span></a>
+            <a href="infrastructure.html" class="dept-link"><span>Infrastructure</span></a>
+            <a href="marketing.html" class="dept-link"><span>Marketing</span></a>
+            <a href="payroll.html" class="dept-link"><span>Payroll</span></a>
+            <a href="product.html" class="dept-link"><span>Product</span></a>
+            <a href="professional-services.html" class="dept-link"><span>Prof. Services</span></a>
+            <a href="sales.html" class="dept-link"><span>Sales</span></a>
+            <a href="testing.html" class="dept-link"><span>Testing</span></a>
         </div>
-        
-        <div class="footer">
-            <p>© 2025 S4Labour - Culture Club - Win Together Initiative</p>
+    </div>
+    
+    <div class="footer">
+        <p>© 2025 S4Labour - Culture Club - Win Together Initiative</p>
+    </div>
+
+    <!-- Feedback Button -->
+    <button class="feedback-btn" onclick="openModal()">
+        <span class="icon">💬</span>
+        <span>Suggest a Change</span>
+    </button>
+
+    <!-- Feedback Modal -->
+    <div class="modal-overlay" id="modalOverlay" onclick="closeModalOnOverlay(event)">
+        <div class="modal">
+            <div class="modal-header">
+                <h2>💡 Suggest a Change</h2>
+                <p>Help us keep this hub accurate and useful</p>
+                <button class="modal-close" onclick="closeModal()">×</button>
+            </div>
+            
+            <div class="modal-body" id="formContainer">
+                <form id="feedbackForm">
+                    <div class="form-group">
+                        <label class="form-label">Your Name <span class="required">*</span></label>
+                        <input type="text" class="form-input" id="userName" required placeholder="Enter your name">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Your Department <span class="required">*</span></label>
+                        <select class="form-select" id="userDept" required>
+                            <option value="">Select your department...</option>
+                            <option value="Consulting">Consulting</option>
+                            <option value="Customer Success">Customer Success</option>
+                            <option value="Engineering">Engineering</option>
+                            <option value="Finance">Finance</option>
+                            <option value="HR">HR</option>
+                            <option value="Infrastructure">Infrastructure</option>
+                            <option value="Marketing">Marketing</option>
+                            <option value="Payroll">Payroll</option>
+                            <option value="Product">Product</option>
+                            <option value="Professional Services">Professional Services</option>
+                            <option value="Sales">Sales</option>
+                            <option value="Testing">Testing</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">What would you like to change? <span class="required">*</span></label>
+                        <textarea class="form-textarea" id="changeRequest" required placeholder="Describe the change you'd like to suggest. For example:&#10;&#10;• A responsibility that's missing or incorrect&#10;• A team connection that should be added&#10;• Something that's unclear or confusing"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">
+                        <span>📧</span> Send to Culture Club
+                    </button>
+                    
+                    <p class="form-note">Your feedback will be sent to the Culture Club team for review.</p>
+                </form>
+            </div>
+            
+            <div class="success-message" id="successMessage">
+                <div class="success-icon">✅</div>
+                <h3>Thank you!</h3>
+                <p>Your suggestion has been sent to the Culture Club team.<br>We'll review it and get back to you if needed.</p>
+            </div>
         </div>
     </div>
 
 <script>
+// Search functionality
 var deptColours = {
-    'Consulting': '#f7941d',
-    'Customer Success': '#00a9a5',
-    'Engineering': '#3b82f6',
-    'Finance': '#7c3aed',
-    'HR': '#e91388',
-    'Infrastructure': '#3b82f6',
-    'Marketing': '#e91388',
-    'Payroll': '#7c3aed',
-    'Product': '#00a9a5',
-    'Professional Services': '#f7941d',
-    'Sales': '#e91388',
-    'Testing': '#3b82f6'
+    'Consulting': '#f7941d', 'Customer Success': '#00a9a5', 'Engineering': '#3b82f6',
+    'Finance': '#7c3aed', 'HR': '#e91388', 'Infrastructure': '#3b82f6',
+    'Marketing': '#e91388', 'Payroll': '#7c3aed', 'Product': '#00a9a5',
+    'Professional Services': '#f7941d', 'Sales': '#e91388', 'Testing': '#3b82f6'
 };
 
 var searchData = [
-    // Consulting
     { dept: 'Consulting', link: 'consulting.html', text: 'ROI calculations and labour cost saving examples for prospects' },
     { dept: 'Consulting', link: 'consulting.html', text: 'Workforce optimisation and operational excellence advice' },
-    { dept: 'Consulting', link: 'consulting.html', text: 'Best practice recommendations for client accounts' },
-    { dept: 'Consulting', link: 'consulting.html', text: 'Thought leadership content and customer success metrics' },
-    
-    // Customer Success
     { dept: 'Customer Success', link: 'customer-success.html', text: 'Client relationships and ongoing support' },
     { dept: 'Customer Success', link: 'customer-success.html', text: 'Feature requests from clients and usage feedback' },
-    { dept: 'Customer Success', link: 'customer-success.html', text: 'Bug reports with impact assessment on clients' },
-    { dept: 'Customer Success', link: 'customer-success.html', text: 'Renewal opportunities and expansion leads' },
-    { dept: 'Customer Success', link: 'customer-success.html', text: 'Customer testimonials and case study interviews' },
-    { dept: 'Customer Success', link: 'customer-success.html', text: 'Churn risk indicators and retention projections' },
-    
-    // Engineering
     { dept: 'Engineering', link: 'engineering.html', text: 'Software development and system maintenance' },
     { dept: 'Engineering', link: 'engineering.html', text: 'Bug fixes and live issue resolution' },
-    { dept: 'Engineering', link: 'engineering.html', text: 'Technical feasibility assessments for new features' },
-    { dept: 'Engineering', link: 'engineering.html', text: 'Demo environment maintenance and stability' },
-    { dept: 'Engineering', link: 'engineering.html', text: 'Payroll-impacting bugs and data flow reliability' },
-    { dept: 'Engineering', link: 'engineering.html', text: 'Code deployment and feature validation' },
-    { dept: 'Engineering', link: 'engineering.html', text: 'Support - Escalation to appropriate teams' },
-    { dept: 'Engineering', link: 'engineering.html', text: 'Support - Ticket Management and Response Time' },
-    { dept: 'Engineering', link: 'engineering.html', text: '3rd Party Integrations - Till and T&A code ownership, data mapping and troubleshooting' },
-    { dept: 'Engineering', link: 'engineering.html', text: '3rd Party Integrations - New integration setup and configuration' },
-    
-    // Finance
     { dept: 'Finance', link: 'finance.html', text: 'Pricing approvals and contract terms guidance' },
-    { dept: 'Finance', link: 'finance.html', text: 'Sales commissions calculation' },
-    { dept: 'Finance', link: 'finance.html', text: 'Campaign budget allocation and ROI tracking' },
-    { dept: 'Finance', link: 'finance.html', text: 'Development budget and feature investment decisions' },
-    { dept: 'Finance', link: 'finance.html', text: 'Internal payroll for S4Labour employees' },
-    { dept: 'Finance', link: 'finance.html', text: 'Consulting engagement pricing and profitability' },
-    
-    // HR
     { dept: 'HR', link: 'hr.html', text: 'People, culture, and organisational development' },
-    { dept: 'HR', link: 'hr.html', text: 'Payroll processing and benefits administration' },
-    { dept: 'HR', link: 'hr.html', text: 'Compensation planning and guidelines' },
-    { dept: 'HR', link: 'hr.html', text: 'Employee technology access and data security' },
-    { dept: 'HR', link: 'hr.html', text: 'Recruitment marketing and employer brand' },
-    
-    // Infrastructure
     { dept: 'Infrastructure', link: 'infrastructure.html', text: 'Development environments and deployment pipelines' },
-    { dept: 'Infrastructure', link: 'infrastructure.html', text: 'Test environment provisioning and refresh' },
-    { dept: 'Infrastructure', link: 'infrastructure.html', text: 'Client environment setup and database provisioning' },
-    { dept: 'Infrastructure', link: 'infrastructure.html', text: 'System uptime during payroll processing windows' },
-    { dept: 'Infrastructure', link: 'infrastructure.html', text: 's4labour.com website hosting and performance' },
-    { dept: 'Infrastructure', link: 'infrastructure.html', text: 'Demo environment availability for sales' },
-    { dept: 'Infrastructure', link: 'infrastructure.html', text: 'Pendo and analytics tools infrastructure' },
-    
-    // Marketing
     { dept: 'Marketing', link: 'marketing.html', text: 'Lead generation from campaigns and events' },
-    { dept: 'Marketing', link: 'marketing.html', text: 'Competitive intelligence and market feedback' },
-    { dept: 'Marketing', link: 'marketing.html', text: 'Website traffic forecasts and lead volume' },
-    { dept: 'Marketing', link: 'marketing.html', text: 'Thought leadership content and client presentations' },
-    { dept: 'Marketing', link: 'marketing.html', text: 'Recruitment marketing materials' },
-    
-    // Payroll
     { dept: 'Payroll', link: 'payroll.html', text: 'Payroll processing and status updates' },
-    { dept: 'Payroll', link: 'payroll.html', text: 'Data quality issues affecting payroll accuracy' },
-    { dept: 'Payroll', link: 'payroll.html', text: 'Payroll service revenue and client billing' },
-    { dept: 'Payroll', link: 'payroll.html', text: 'Payroll service capabilities for prospects' },
-    
-    // Product
-    { dept: 'Product', link: 'product.html', text: 'Feature specifications and acceptance criteria' },
-    { dept: 'Product', link: 'product.html', text: 'Product roadmap and feature capabilities' },
-    { dept: 'Product', link: 'product.html', text: 'System documentation and configuration guidance' },
-    { dept: 'Product', link: 'product.html', text: 'Feature release schedules and roadmap transparency' },
-    { dept: 'Product', link: 'product.html', text: 'UI/UX assets and technical accuracy reviews' },
-    { dept: 'Product', link: 'product.html', text: 'Demo environments for sales conversations' },
-    { dept: 'Product', link: 'product.html', text: 'Support - Initial customer query handling and triage' },
-    { dept: 'Product', link: 'product.html', text: 'Support - Basic troubleshooting and issue resolution' },
-    { dept: 'Product', link: 'product.html', text: 'Support - Knowledge Base Management' },
-    { dept: 'Product', link: 'product.html', text: 'Integration - acting as a point of escalation of major integration outages' },
-    
-    // Professional Services
+    { dept: 'Product', link: 'product.html', text: 'Feature specifications and product roadmap' },
     { dept: 'Professional Services', link: 'professional-services.html', text: 'Client onboarding and implementation' },
-    { dept: 'Professional Services', link: 'professional-services.html', text: 'New client handover with documentation' },
-    { dept: 'Professional Services', link: 'professional-services.html', text: 'Client data setup for payroll processing' },
-    { dept: 'Professional Services', link: 'professional-services.html', text: 'Implementation feedback and success stories' },
-    { dept: 'Professional Services', link: 'professional-services.html', text: 'User feedback on system usability' },
-    
-    // Sales
     { dept: 'Sales', link: 'sales.html', text: 'New business development and deals' },
-    { dept: 'Sales', link: 'sales.html', text: 'Contract handover with client expectations' },
-    { dept: 'Sales', link: 'sales.html', text: 'Lead quality feedback and competitive insights' },
-    { dept: 'Sales', link: 'sales.html', text: 'Customer feature requests and market demand' },
-    { dept: 'Sales', link: 'sales.html', text: 'Revenue forecasts and pipeline reports' },
-    { dept: 'Sales', link: 'sales.html', text: 'Consulting engagement referrals' },
-    
-    // Testing
-    { dept: 'Testing', link: 'testing.html', text: 'Quality assurance and system validation' },
-    { dept: 'Testing', link: 'testing.html', text: 'Bug identification with reproduction steps' },
-    { dept: 'Testing', link: 'testing.html', text: 'Usability insights and feature verification' },
-    { dept: 'Testing', link: 'testing.html', text: 'Application vs infrastructure issue diagnosis' }
+    { dept: 'Testing', link: 'testing.html', text: 'Quality assurance and system validation' }
 ];
 
-var searchInput = document.getElementById('searchInput');
-var resultsContainer = document.getElementById('resultsContainer');
-var resultsTitle = document.getElementById('resultsTitle');
-var resultsList = document.getElementById('resultsList');
-
-function getColor(dept) {
-    return deptColours[dept] || '#00a9a5';
-}
-
-function hexToRgba(hex, alpha) {
-    var r = parseInt(hex.slice(1, 3), 16);
-    var g = parseInt(hex.slice(3, 5), 16);
-    var b = parseInt(hex.slice(5, 7), 16);
-    return 'rgba(' + r + ', ' + g + ', ' + b + ', ' + alpha + ')';
-}
-
-searchInput.addEventListener('input', function() {
+document.getElementById('searchInput').addEventListener('input', function() {
     var query = this.value.trim().toLowerCase();
+    var resultsContainer = document.getElementById('resultsContainer');
+    var resultsTitle = document.getElementById('resultsTitle');
+    var resultsList = document.getElementById('resultsList');
     
-    if (query.length < 2) {
-        resultsContainer.classList.remove('active');
-        return;
-    }
+    if (query.length < 2) { resultsContainer.classList.remove('active'); return; }
     
     var matches = searchData.filter(function(item) {
-        return item.text.toLowerCase().includes(query) || 
-               item.dept.toLowerCase().includes(query);
+        return item.text.toLowerCase().includes(query) || item.dept.toLowerCase().includes(query);
     });
     
     resultsContainer.classList.add('active');
     
     if (matches.length === 0) {
         resultsTitle.textContent = '';
-        resultsList.innerHTML = '<div class="no-results"><div class="no-results-icon">🤔</div><p>No matches found. Try different keywords or browse the departments below.</p></div>';
+        resultsList.innerHTML = '<div class="no-results"><div class="no-results-icon">🤔</div><p>No matches found. Try different keywords.</p></div>';
         return;
     }
     
     resultsTitle.textContent = matches.length + ' result' + (matches.length !== 1 ? 's' : '') + ' found';
-    
     var html = '';
     matches.forEach(function(item) {
-        var color = getColor(item.dept);
-        var highlightBg = hexToRgba(color, 0.2);
-        var highlighted = item.text.replace(
-            new RegExp('(' + query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi'), 
-            '<mark style="background: ' + highlightBg + '; color: ' + color + '; padding: 1px 4px; border-radius: 3px; font-weight: 600;">$1</mark>'
-        );
+        var color = deptColours[item.dept] || '#00a9a5';
         html += '<div class="result-item" style="--dept-color: ' + color + '" onclick="window.location.href=\'' + item.link + '\'">';
         html += '<div class="result-dept">' + item.dept + '</div>';
-        html += '<div class="result-text">' + highlighted + '</div>';
+        html += '<div class="result-text">' + item.text + '</div>';
         html += '</div>';
     });
-    
     resultsList.innerHTML = html;
+});
+
+// Modal functionality
+function openModal() {
+    document.getElementById('modalOverlay').classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+    document.getElementById('modalOverlay').classList.remove('active');
+    document.body.style.overflow = '';
+    // Reset form after closing
+    setTimeout(function() {
+        document.getElementById('feedbackForm').reset();
+        document.getElementById('formContainer').style.display = 'block';
+        document.getElementById('successMessage').classList.remove('active');
+    }, 300);
+}
+
+function closeModalOnOverlay(event) {
+    if (event.target === document.getElementById('modalOverlay')) {
+        closeModal();
+    }
+}
+
+// Form submission
+document.getElementById('feedbackForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    var name = document.getElementById('userName').value;
+    var dept = document.getElementById('userDept').value;
+    var change = document.getElementById('changeRequest').value;
+    
+    // Create email content
+    var subject = encodeURIComponent('Working Together Hub - Change Suggestion from ' + name);
+    var body = encodeURIComponent(
+        'Hi Culture Club,\n\n' +
+        'A change has been suggested for the Working Together at S4 hub.\n\n' +
+        '---\n\n' +
+        'FROM: ' + name + '\n' +
+        'DEPARTMENT: ' + dept + '\n\n' +
+        'SUGGESTED CHANGE:\n' + change + '\n\n' +
+        '---\n\n' +
+        'Sent from the Working Together Hub'
+    );
+    
+    // Open email client
+    window.location.href = 'mailto:igor@s4labour.co.uk?subject=' + subject + '&body=' + body;
+    
+    // Show success message
+    document.getElementById('formContainer').style.display = 'none';
+    document.getElementById('successMessage').classList.add('active');
+    
+    // Close modal after delay
+    setTimeout(closeModal, 3000);
+});
+
+// Close on Escape key
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeModal();
 });
 </script>
 </body>
