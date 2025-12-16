@@ -554,7 +554,7 @@ document.getElementById('feedbackForm').addEventListener('submit', function(e) {
     var change = document.getElementById('changeRequest').value;
     
     // Create email content
-    var subject = encodeURIComponent('Working Together Hub - Change Suggestion from ' + name);
+    var subject = encodeURIComponent('💡 Working Together Hub - Suggestion from ' + name);
     var body = encodeURIComponent(
         'Hi Culture Club Team,\n\n' +
         'A new suggestion has been submitted for the Working Together at S4 hub.\n\n' +
@@ -574,6 +574,7 @@ document.getElementById('feedbackForm').addEventListener('submit', function(e) {
         }) + '\n\n' +
         '---\n' +
         'Sent automatically from the Working Together at S4 Hub\n' +
+        '🔗 https://igors4labour.github.io/Win-Together-Better-Together/'
     );
     
     // Open email client
