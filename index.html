@@ -695,14 +695,14 @@ document.getElementById('feedbackForm').addEventListener('submit', function(e) {
     );
     
     // Open email client
-    window.location.href = 'mailto:igor@s4labour.co.uk?subject=' + subject + '&body=' + body;
+    window.location.href = 'mailto:cultureclub@s4labour.co.uk?subject=' + subject + '&body=' + body;
     
     // Show success message
     document.getElementById('formContainer').style.display = 'none';
     document.getElementById('successMessage').classList.add('active');
     
     // Close modal after delay
-    setTimeout(closeModal, 3000);
+    setTimeout(closeModal, 5000);
 });
 
 // Close on Escape key
