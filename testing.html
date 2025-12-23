@@ -13,7 +13,7 @@
             100% { background-position: 0% 50%; }
         }
 
-                /* Logo Side Animations */
+        /* Logo Side Animations */
         @keyframes floatLogo1 { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-20px) rotate(5deg); } }
         @keyframes floatLogo2 { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(25px) rotate(-5deg); } }
         @keyframes floatLogo3 { 0%, 100% { transform: translateY(0) rotate(-3deg); } 50% { transform: translateY(-15px) rotate(3deg); } }
@@ -34,8 +34,8 @@
         .logo-right-5 { width: 125px; right: 45px; top: 90%; animation: floatLogo5 15s ease-in-out infinite; }
         @media (max-width: 1200px) { .logo-decorations { display: none; } }
         
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; background: #f5f7fa;
-        .container { max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; background: white;
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; background: #ffffff; min-height: 100vh; padding: 40px 20px; line-height: 1.6; }
+        .container { max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; background: white; border-radius: 16px; box-shadow: 0 4px 6px rgba(0,0,0,0.07), 0 10px 30px rgba(0,0,0,0.08); overflow: hidden; }
         .header { background: linear-gradient(135deg, #00a9a5 0%, #0d7377 25%, #ff6b9d 50%, #0d7377 75%, #00a9a5 100%); background-size: 400% 400%; animation: waveFlow 8s ease infinite; color: white; padding: 60px 50px; position: relative; overflow: hidden; }
         .header::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.08'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); }
         .header-content { position: relative; z-index: 1; }
@@ -76,7 +76,7 @@
     </style>
 </head>
 <body>
-    <!-- Floating Value Icons -->
+<!-- Floating Value Icons -->
 <div class="logo-decorations">
     <img src="Assets/Beyond.png" alt="" class="floating-logo logo-left-1">
     <img src="Assets/Ignite.png" alt="" class="floating-logo logo-left-2">
@@ -106,32 +106,29 @@
             </div>
 
             <div id="values" class="section">
-                <div class="section-header" onclick="toggleSection(this)">
+                <div class="section-header collapsed" onclick="toggleSection(this)">
                     <h2>Our Team Values in Action</h2>
                     <span class="collapse-icon">▼</span>
                 </div>
-                <div class="section-content values-section">
+                <div class="section-content collapsed values-section">
                     <h3>Ignite Growth</h3>
                     <ul class="values-list">
                         <li>We continuously learn from bugs found and use those insights to improve our testing strategies</li>
                         <li>We share what works (and what doesn't) in testing approaches so everyone benefits from our learnings</li>
                         <li>We challenge ourselves to find better ways to ensure quality, not just follow test scripts</li>
                     </ul>
-
                     <h3>Empower Through Innovation</h3>
                     <ul class="values-list">
                         <li>We take time to understand what features really need to do before testing them</li>
                         <li>We look for practical testing approaches that balance thoroughness with delivery speed</li>
                         <li>When a testing approach isn't catching issues, we're willing to adapt and try different methods</li>
                     </ul>
-
                     <h3>Always Go Beyond</h3>
                     <ul class="values-list">
                         <li>We put ourselves in users' shoes when testing features, thinking about real-world usage scenarios</li>
                         <li>We respond quickly to testing requests and bug reports, knowing that delays impact releases</li>
                         <li>We focus our energy on testing that genuinely improves quality and prevents issues in production</li>
                     </ul>
-
                     <h3>Trust Starts With Us</h3>
                     <ul class="values-list">
                         <li>When we see potential quality issues (critical bugs, regression risks, usability problems), we flag them early rather than waiting</li>
@@ -139,7 +136,6 @@
                         <li>When we commit to testing timelines, we do everything we can to follow through</li>
                         <li>We own our missed bugs and testing gaps and focus on improving our processes rather than making excuses</li>
                     </ul>
-
                     <h3>Win Together</h3>
                     <ul class="values-list">
                         <li>We value input from Product, Engineering, and users - Testing brings quality expertise, others bring technical and business knowledge</li>
@@ -151,295 +147,57 @@
             </div>
 
             <div id="what-we-do" class="section">
-                <div class="section-header" onclick="toggleSection(this)">
+                <div class="section-header collapsed" onclick="toggleSection(this)">
                     <h2>What Our Department Does</h2>
                     <span class="collapse-icon">▼</span>
                 </div>
-                <div class="section-content">
-                    <div class="responsibility-item">
-                        <div class="item-wrapper">
-                            <div class="bullet"></div>
-                            <div class="item-label">Ensuring new functionality works as expected before release</div>
-                        </div>
-                    </div>
-
-                    <div class="responsibility-item">
-                        <div class="item-wrapper">
-                            <div class="bullet"></div>
-                            <div class="item-label">Proactively reporting bugs found in the system</div>
-                        </div>
-                    </div>
-
-                    <div class="responsibility-item">
-                        <div class="item-wrapper">
-                            <div class="bullet"></div>
-                            <div class="item-label">Developing and executing test strategies and test cases</div>
-                        </div>
-                    </div>
-
-                    <div class="responsibility-item">
-                        <div class="item-wrapper">
-                            <div class="bullet"></div>
-                            <div class="item-label">Performing regression testing on existing features</div>
-                        </div>
-                    </div>
-
-                    <div class="responsibility-item">
-                        <div class="item-wrapper">
-                            <div class="bullet"></div>
-                            <div class="item-label">Becoming subject matter experts (SMEs) in system functionality</div>
-                        </div>
-                    </div>
-
-                    <div class="responsibility-item">
-                        <div class="item-wrapper">
-                            <div class="bullet"></div>
-                            <div class="item-label">Validating features against acceptance criteria</div>
-                        </div>
-                    </div>
-
-                    <div class="responsibility-item">
-                        <div class="item-wrapper">
-                            <div class="bullet"></div>
-                            <div class="item-label">Identifying edge cases and potential issues before they reach production</div>
-                        </div>
-                    </div>
-
-                    <div class="responsibility-item">
-                        <div class="item-wrapper">
-                            <div class="bullet"></div>
-                            <div class="item-label">Supporting quality assurance across both S4Labour and Payroll software</div>
-                        </div>
-                    </div>
-
-                    <div class="responsibility-item">
-                        <div class="item-wrapper">
-                            <div class="bullet"></div>
-                            <div class="item-label">Documenting test results and bug reports</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div id="decide-on" class="section">
-                <div class="section-header" onclick="toggleSection(this)">
-                    <h2>We Can Decide On</h2>
-                    <span class="collapse-icon">▼</span>
-                </div>
-                <div class="section-content">
-                    <div class="responsibility-item">
-                        <div class="item-wrapper">
-                            <div class="bullet"></div>
-                            <div class="item-label">Test strategies and testing methodologies</div>
-                        </div>
-                    </div>
-
-                    <div class="responsibility-item">
-                        <div class="item-wrapper">
-                            <div class="bullet"></div>
-                            <div class="item-label">Test case design and coverage priorities</div>
-                        </div>
-                    </div>
-
-                    <div class="responsibility-item">
-                        <div class="item-wrapper">
-                            <div class="bullet"></div>
-                            <div class="item-label">Bug severity classification and detailed reporting</div>
-                        </div>
-                    </div>
-
-                    <div class="responsibility-item">
-                        <div class="item-wrapper">
-                            <div class="bullet"></div>
-                            <div class="item-label">Testing tools and automation framework selection</div>
-                        </div>
-                    </div>
-
-                    <div class="responsibility-item">
-                        <div class="item-wrapper">
-                            <div class="bullet"></div>
-                            <div class="item-label">Internal team structure and testing workflow</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div id="jointly" class="section">
-                <div class="section-header" onclick="toggleSection(this)">
-                    <h2>We Decide Jointly with Others</h2>
-                    <span class="collapse-icon">▼</span>
-                </div>
-                <div class="section-content">
-                    <div class="responsibility-item">
-                        <div class="item-wrapper">
-                            <div class="bullet"></div>
-                            <div class="item-label">Release readiness and go/no-go decisions <em>(with Product, Engineering)</em></div>
-                        </div>
-                    </div>
-
-                    <div class="responsibility-item">
-                        <div class="item-wrapper">
-                            <div class="bullet"></div>
-                            <div class="item-label">Bug prioritisation and fix urgency <em>(with Product, Engineering, Customer Success)</em></div>
-                        </div>
-                    </div>
-
-                    <div class="responsibility-item">
-                        <div class="item-wrapper">
-                            <div class="bullet"></div>
-                            <div class="item-label">Testing timelines and capacity planning <em>(with Product, Engineering)</em></div>
-                        </div>
-                    </div>
-
-                    <div class="responsibility-item">
-                        <div class="item-wrapper">
-                            <div class="bullet"></div>
-                            <div class="item-label">Acceptance criteria interpretation <em>(with Product)</em></div>
-                        </div>
-                    </div>
-
-                    <div class="responsibility-item">
-                        <div class="item-wrapper">
-                            <div class="bullet"></div>
-                            <div class="item-label">Production incident investigation <em>(with Engineering, Customer Success)</em></div>
-                        </div>
-                    </div>
+                <div class="section-content collapsed">
+                    <div class="responsibility-item"><div class="item-wrapper"><div class="bullet"></div><div class="item-label">Testing timelines and capacity planning <em>(with Product, Engineering)</em></div></div></div>
+                    <div class="responsibility-item"><div class="item-wrapper"><div class="bullet"></div><div class="item-label">Acceptance criteria interpretation <em>(with Product)</em></div></div></div>
+                    <div class="responsibility-item"><div class="item-wrapper"><div class="bullet"></div><div class="item-label">Production incident investigation <em>(with Engineering, Customer Success)</em></div></div></div>
                 </div>
             </div>
 
             <div id="others-decide" class="section">
-                <div class="section-header" onclick="toggleSection(this)">
+                <div class="section-header collapsed" onclick="toggleSection(this)">
                     <h2>What Others Decide (That Affects Us)</h2>
                     <span class="collapse-icon">▼</span>
                 </div>
-                <div class="section-content">
-                    <div class="responsibility-item">
-                        <div class="item-wrapper">
-                            <div class="bullet"></div>
-                            <div class="item-label"><strong>Product:</strong> Clear feature requirements, acceptance criteria, and expected behaviour</div>
-                        </div>
-                    </div>
-
-                    <div class="responsibility-item">
-                        <div class="item-wrapper">
-                            <div class="bullet"></div>
-                            <div class="item-label"><strong>Engineering:</strong> Deployable code, bug fixes, and test environment access</div>
-                        </div>
-                    </div>
-
-                    <div class="responsibility-item">
-                        <div class="item-wrapper">
-                            <div class="bullet"></div>
-                            <div class="item-label"><strong>Infrastructure:</strong> Stable test environments, data setup, and environment refresh capabilities</div>
-                        </div>
-                    </div>
-
-                    <div class="responsibility-item">
-                        <div class="item-wrapper">
-                            <div class="bullet"></div>
-                            <div class="item-label"><strong>Professional Services:</strong> Real-world usage scenarios and implementation edge cases</div>
-                        </div>
-                    </div>
-
-                    <div class="responsibility-item">
-                        <div class="item-wrapper">
-                            <div class="bullet"></div>
-                            <div class="item-label"><strong>Customer Success:</strong> Production bug reports and user impact information</div>
-                        </div>
-                    </div>
-
-                    <div class="responsibility-item">
-                        <div class="item-wrapper">
-                            <div class="bullet"></div>
-                            <div class="item-label"><strong>Payroll:</strong> Payroll-specific test scenarios and data validation requirements</div>
-                        </div>
-                    </div>
+                <div class="section-content collapsed">
+                    <div class="responsibility-item"><div class="item-wrapper"><div class="bullet"></div><div class="item-label"><strong>Product:</strong> Clear feature requirements, acceptance criteria, and expected behaviour</div></div></div>
+                    <div class="responsibility-item"><div class="item-wrapper"><div class="bullet"></div><div class="item-label"><strong>Engineering:</strong> Deployable code, bug fixes, and test environment access</div></div></div>
+                    <div class="responsibility-item"><div class="item-wrapper"><div class="bullet"></div><div class="item-label"><strong>Infrastructure:</strong> Stable test environments, data setup, and environment refresh capabilities</div></div></div>
+                    <div class="responsibility-item"><div class="item-wrapper"><div class="bullet"></div><div class="item-label"><strong>Professional Services:</strong> Real-world usage scenarios and implementation edge cases</div></div></div>
+                    <div class="responsibility-item"><div class="item-wrapper"><div class="bullet"></div><div class="item-label"><strong>Customer Success:</strong> Production bug reports and user impact information</div></div></div>
+                    <div class="responsibility-item"><div class="item-wrapper"><div class="bullet"></div><div class="item-label"><strong>Payroll:</strong> Payroll-specific test scenarios and data validation requirements</div></div></div>
                 </div>
             </div>
 
             <div id="work-with" class="section">
-                <div class="section-header" onclick="toggleSection(this)">
+                <div class="section-header collapsed" onclick="toggleSection(this)">
                     <h2>Who We Work Closely With</h2>
                     <span class="collapse-icon">▼</span>
                 </div>
-                <div class="section-content">
-                    <div class="responsibility-item">
-                        <div class="item-wrapper">
-                            <div class="bullet"></div>
-                            <div class="item-label"><strong>Engineering:</strong> Bug identification, reproduction steps, and quality validation before release</div>
-                        </div>
-                    </div>
-
-                    <div class="responsibility-item">
-                        <div class="item-wrapper">
-                            <div class="bullet"></div>
-                            <div class="item-label"><strong>Product:</strong> Quality feedback, usability insights, and feature verification</div>
-                        </div>
-                    </div>
-
-                    <div class="responsibility-item">
-                        <div class="item-wrapper">
-                            <div class="bullet"></div>
-                            <div class="item-label"><strong>Infrastructure:</strong> Application-level issue identification vs infrastructure problems</div>
-                        </div>
-                    </div>
-
-                    <div class="responsibility-item">
-                        <div class="item-wrapper">
-                            <div class="bullet"></div>
-                            <div class="item-label"><strong>Support:</strong> Testing bugs raised and making sure all issues are tested/released based on priority</div>
-                        </div>
-                    </div>
+                <div class="section-content collapsed">
+                    <div class="responsibility-item"><div class="item-wrapper"><div class="bullet"></div><div class="item-label"><strong>Engineering:</strong> Bug identification, reproduction steps, and quality validation before release</div></div></div>
+                    <div class="responsibility-item"><div class="item-wrapper"><div class="bullet"></div><div class="item-label"><strong>Product:</strong> Quality feedback, usability insights, and feature verification</div></div></div>
+                    <div class="responsibility-item"><div class="item-wrapper"><div class="bullet"></div><div class="item-label"><strong>Infrastructure:</strong> Application-level issue identification vs infrastructure problems</div></div></div>
+                    <div class="responsibility-item"><div class="item-wrapper"><div class="bullet"></div><div class="item-label"><strong>Support:</strong> Testing bugs raised and making sure all issues are tested/released based on priority</div></div></div>
                 </div>
             </div>
 
             <div id="gaps" class="section">
-                <div class="section-header" onclick="toggleSection(this)">
+                <div class="section-header collapsed" onclick="toggleSection(this)">
                     <h2>Potential Gaps and Overlaps</h2>
                     <span class="collapse-icon">▼</span>
                 </div>
-                <div class="section-content">
-                    <div class="responsibility-item">
-                        <div class="item-wrapper">
-                            <div class="bullet"></div>
-                            <div class="item-label">Proactive bug hunting scope</div>
-                        </div>
-                    </div>
-
-                    <div class="responsibility-item">
-                        <div class="item-wrapper">
-                            <div class="bullet"></div>
-                            <div class="item-label">Test data management</div>
-                        </div>
-                    </div>
-
-                    <div class="responsibility-item">
-                        <div class="item-wrapper">
-                            <div class="bullet"></div>
-                            <div class="item-label">Production monitoring</div>
-                        </div>
-                    </div>
-
-                    <div class="responsibility-item">
-                        <div class="item-wrapper">
-                            <div class="bullet"></div>
-                            <div class="item-label">Documentation ownership</div>
-                        </div>
-                    </div>
-
-                    <div class="responsibility-item">
-                        <div class="item-wrapper">
-                            <div class="bullet"></div>
-                            <div class="item-label">Both Testing and Engineering troubleshoot bugs</div>
-                        </div>
-                    </div>
-
-                    <div class="responsibility-item">
-                        <div class="item-wrapper">
-                            <div class="bullet"></div>
-                            <div class="item-label">Both Testing and Product validate feature requirements</div>
-                        </div>
-                    </div>
+                <div class="section-content collapsed">
+                    <div class="responsibility-item"><div class="item-wrapper"><div class="bullet"></div><div class="item-label">Proactive bug hunting scope</div></div></div>
+                    <div class="responsibility-item"><div class="item-wrapper"><div class="bullet"></div><div class="item-label">Test data management</div></div></div>
+                    <div class="responsibility-item"><div class="item-wrapper"><div class="bullet"></div><div class="item-label">Production monitoring</div></div></div>
+                    <div class="responsibility-item"><div class="item-wrapper"><div class="bullet"></div><div class="item-label">Documentation ownership</div></div></div>
+                    <div class="responsibility-item"><div class="item-wrapper"><div class="bullet"></div><div class="item-label">Both Testing and Engineering troubleshoot bugs</div></div></div>
+                    <div class="responsibility-item"><div class="item-wrapper"><div class="bullet"></div><div class="item-label">Both Testing and Product validate feature requirements</div></div></div>
                 </div>
             </div>
         </div>
@@ -451,10 +209,40 @@
             content.classList.toggle('collapsed');
             header.classList.toggle('collapsed');
         }
-
-        window.onload = function() {
-            // Keep all sections collapsed initially for professional appearance
-        };
     </script>
 </body>
-</html>
+</html> class="bullet"></div><div class="item-label">Ensuring new functionality works as expected before release</div></div></div>
+                    <div class="responsibility-item"><div class="item-wrapper"><div class="bullet"></div><div class="item-label">Proactively reporting bugs found in the system</div></div></div>
+                    <div class="responsibility-item"><div class="item-wrapper"><div class="bullet"></div><div class="item-label">Developing and executing test strategies and test cases</div></div></div>
+                    <div class="responsibility-item"><div class="item-wrapper"><div class="bullet"></div><div class="item-label">Performing regression testing on existing features</div></div></div>
+                    <div class="responsibility-item"><div class="item-wrapper"><div class="bullet"></div><div class="item-label">Becoming subject matter experts (SMEs) in system functionality</div></div></div>
+                    <div class="responsibility-item"><div class="item-wrapper"><div class="bullet"></div><div class="item-label">Validating features against acceptance criteria</div></div></div>
+                    <div class="responsibility-item"><div class="item-wrapper"><div class="bullet"></div><div class="item-label">Identifying edge cases and potential issues before they reach production</div></div></div>
+                    <div class="responsibility-item"><div class="item-wrapper"><div class="bullet"></div><div class="item-label">Supporting quality assurance across both S4Labour and Payroll software</div></div></div>
+                    <div class="responsibility-item"><div class="item-wrapper"><div class="bullet"></div><div class="item-label">Documenting test results and bug reports</div></div></div>
+                </div>
+            </div>
+
+            <div id="decide-on" class="section">
+                <div class="section-header collapsed" onclick="toggleSection(this)">
+                    <h2>We Can Decide On</h2>
+                    <span class="collapse-icon">▼</span>
+                </div>
+                <div class="section-content collapsed">
+                    <div class="responsibility-item"><div class="item-wrapper"><div class="bullet"></div><div class="item-label">Test strategies and testing methodologies</div></div></div>
+                    <div class="responsibility-item"><div class="item-wrapper"><div class="bullet"></div><div class="item-label">Test case design and coverage priorities</div></div></div>
+                    <div class="responsibility-item"><div class="item-wrapper"><div class="bullet"></div><div class="item-label">Bug severity classification and detailed reporting</div></div></div>
+                    <div class="responsibility-item"><div class="item-wrapper"><div class="bullet"></div><div class="item-label">Testing tools and automation framework selection</div></div></div>
+                    <div class="responsibility-item"><div class="item-wrapper"><div class="bullet"></div><div class="item-label">Internal team structure and testing workflow</div></div></div>
+                </div>
+            </div>
+
+            <div id="jointly" class="section">
+                <div class="section-header collapsed" onclick="toggleSection(this)">
+                    <h2>We Decide Jointly with Others</h2>
+                    <span class="collapse-icon">▼</span>
+                </div>
+                <div class="section-content collapsed">
+                    <div class="responsibility-item"><div class="item-wrapper"><div class="bullet"></div><div class="item-label">Release readiness and go/no-go decisions <em>(with Product, Engineering)</em></div></div></div>
+                    <div class="responsibility-item"><div class="item-wrapper"><div class="bullet"></div><div class="item-label">Bug prioritisation and fix urgency <em>(with Product, Engineering, Customer Success)</em></div></div></div>
+                    <div class="responsibility-item"><div class="item-wrapper"><div
